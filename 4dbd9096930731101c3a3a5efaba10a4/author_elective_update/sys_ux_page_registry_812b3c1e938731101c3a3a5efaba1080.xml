@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ux_page_registry">
+    <sys_ux_page_registry action="DELETE">
+        <active>true</active>
+        <admin_panel>852b3c1e938731101c3a3a5efaba1080</admin_panel>
+        <admin_panel_table>sys_ux_app_config</admin_panel_table>
+        <auth_routes>{"login":"login","logout": "login"}</auth_routes>
+        <page/>
+        <parent_app/>
+        <path>happyimmoproject</path>
+        <root_macroponent display_value="Portal App Shell">b66bf1075b31101016fd7c1bf481c7a7</root_macroponent>
+        <sys_class_name>sys_ux_page_registry</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2023-12-13 15:29:40</sys_created_on>
+        <sys_id>812b3c1e938731101c3a3a5efaba1080</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>HappyImmoProject</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_update_name>sys_ux_page_registry_812b3c1e938731101c3a3a5efaba1080</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2023-12-13 15:29:40</sys_updated_on>
+        <title>HappyImmoProject</title>
+    </sys_ux_page_registry>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</application>
+        <file_path/>
+        <instance_id>45b65c1f1b4eb5d019254089bd4bcb77</instance_id>
+        <instance_name>dev196055</instance_name>
+        <name>sys_ux_page_registry_812b3c1e938731101c3a3a5efaba1080</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ux_page_registry"><sys_ux_page_registry action="INSERT_OR_UPDATE"><active>true</active><admin_panel>852b3c1e938731101c3a3a5efaba1080</admin_panel><admin_panel_table>sys_ux_app_config</admin_panel_table><auth_routes>{"login":"login","logout": "login"}</auth_routes><page/><parent_app/><path>happyimmoproject</path><root_macroponent display_value="Portal App Shell">b66bf1075b31101016fd7c1bf481c7a7</root_macroponent><sys_class_name>sys_ux_page_registry</sys_class_name><sys_created_by>system</sys_created_by><sys_created_on>2023-12-13 15:29:40</sys_created_on><sys_id>812b3c1e938731101c3a3a5efaba1080</sys_id><sys_mod_count>0</sys_mod_count><sys_name>HappyImmoProject</sys_name><sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package><sys_policy/><sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope><sys_update_name>sys_ux_page_registry_812b3c1e938731101c3a3a5efaba1080</sys_update_name><sys_updated_by>system</sys_updated_by><sys_updated_on>2023-12-13 15:29:40</sys_updated_on><title>HappyImmoProject</title></sys_ux_page_registry></record_update>]]></payload>
+        <payload_hash>1438572607</payload_hash>
+        <record_name>HappyImmoProject</record_name>
+        <reverted_from/>
+        <source>fc61bb31930331101c3a3a5efaba10bd</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by/>
+        <sys_created_on>2023-12-12 15:28:54</sys_created_on>
+        <sys_id>530c749e938731101c3a3a5efaba10cc</sys_id>
+        <sys_mod_count/>
+        <sys_recorded_at>18c5ea532f00000000</sys_recorded_at>
+        <sys_updated_by/>
+        <sys_updated_on/>
+        <type>UX Application</type>
+        <update_guid>130c749ecd873110fa5d2555e7c9e2cc</update_guid>
+        <update_guid_history>130c749ecd873110fa5d2555e7c9e2cc:1438572607</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-13 15:33:36</sys_created_on>
+        <sys_db_object display_value="" name="sys_ux_page_registry">sys_ux_page_registry</sys_db_object>
+        <sys_id>14550a7894604957822966fa8e53c959</sys_id>
+        <sys_metadata>812b3c1e938731101c3a3a5efaba1080</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>HappyImmoProject</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_scope_delete display_value="">1c3543a6040145908eb8e2564bcf0900</sys_scope_delete>
+        <sys_update_name>sys_ux_page_registry_812b3c1e938731101c3a3a5efaba1080</sys_update_name>
+        <sys_update_version display_value="sys_ux_page_registry_812b3c1e938731101c3a3a5efaba1080">530c749e938731101c3a3a5efaba10cc</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-13 15:33:36</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

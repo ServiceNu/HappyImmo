@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>5</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">404cce26938f71101c3a3a5efaba10c3</sp_column>
+        <sp_widget display_value="Publication List">8f039d40c302120058879f2974d3ae31</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-14 16:04:35</sys_created_on>
+        <sys_id>43bcce66938f71101c3a3a5efaba101b</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_update_name>sp_instance_43bcce66938f71101c3a3a5efaba101b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-14 16:04:39</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="DELETE" query="documentkey=43bcce66938f71101c3a3a5efaba101b"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</application>
+        <file_path/>
+        <instance_id>45b65c1f1b4eb5d019254089bd4bcb77</instance_id>
+        <instance_name>dev196055</instance_name>
+        <name>sp_instance_43bcce66938f71101c3a3a5efaba101b</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance"><sp_instance action="INSERT_OR_UPDATE"><active>true</active><class_name/><color>default</color><css/><glyph/><id/><order>5</order><roles/><short_description/><size>md</size><sp_column display_value="1">404cce26938f71101c3a3a5efaba10c3</sp_column><sp_widget display_value="Publication List">8f039d40c302120058879f2974d3ae31</sp_widget><sys_class_name>sp_instance</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2023-12-14 16:04:35</sys_created_on><sys_id>43bcce66938f71101c3a3a5efaba101b</sys_id><sys_mod_count>1</sys_mod_count><sys_name/><sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package><sys_policy/><sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope><sys_update_name>sp_instance_43bcce66938f71101c3a3a5efaba101b</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2023-12-14 16:04:39</sys_updated_on><title/><url/><widget_parameters/></sp_instance><sys_translated_text action="delete_multiple" query="documentkey=43bcce66938f71101c3a3a5efaba101b"/></record_update>]]></payload>
+        <payload_hash>-1303301601</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>41bd9096930731101c3a3a5efaba10a9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-14 16:04:39</sys_created_on>
+        <sys_id>04cc02a6938f71101c3a3a5efaba1048</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18c6912a6080000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-14 16:04:39</sys_updated_on>
+        <type>Instance</type>
+        <update_guid>0ccc02a6b88f7110975d48d6d5cee547</update_guid>
+        <update_guid_history>0ccc02a6b88f7110975d48d6d5cee547:-1303301601,1bbcce66d48f71105dbe3315fac6e91c:438540094</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">6ccc8666938f71101c3a3a5efaba1070</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-14 16:04:41</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance">sp_instance</sys_db_object>
+        <sys_id>2e446ea371f449889379255cab329741</sys_id>
+        <sys_metadata>43bcce66938f71101c3a3a5efaba101b</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_scope_delete display_value="">1c3543a6040145908eb8e2564bcf0900</sys_scope_delete>
+        <sys_update_name>sp_instance_43bcce66938f71101c3a3a5efaba101b</sys_update_name>
+        <sys_update_version display_value="sp_instance_43bcce66938f71101c3a3a5efaba101b">04cc02a6938f71101c3a3a5efaba1048</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-14 16:04:41</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

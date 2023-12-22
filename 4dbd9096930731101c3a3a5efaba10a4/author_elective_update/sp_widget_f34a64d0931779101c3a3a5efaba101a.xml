@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[function sss($filter, $location) {
+    var c = this;
+    c.options.glyph = c.options.glyph || 'search';
+    c.options.title = c.options.title || c.data.searchMsg;
+
+    c.onSelect = function($item, $model, $label) {
+        if ($item.target)
+            window.open($item.url, $item.target);
+        else
+            $location.url($item.url);
+
+        /*if ($item.type == "sc")
+        	$location.search({id: 'sc_cat_item', sys_id: $item.sys_id});
+        if ($item.type == "sc_content") {
+        	if ($item.content_type == "kb")
+        		$location.search({id: 'kb_article', sys_id: $item.kb_article});
+        	else if ($item.content_type == "external")
+        		window.open($item.url, '_blank');
+        	else
+        		$location.search({id: 'sc_cat_item', sys_id: $item.sys_id});
+        }
+        if ($item.type == "sc_guide")
+        	$location.search({id: 'sc_cat_item_guide', sys_id: $item.sys_id});
+        if ($item.type == "kb")
+        	$location.search({id: 'kb_article', sys_id: $item.sys_id});
+        if ($item.type == "qa")
+        	$location.search({id: 'kb_social_qa_question', question_id: $item.sys_id});
+        if ($item.type == "rec")
+        	$location.search({id: $item.page, sys_id: $item.sys_id, table: $item.table});*/
+    };
+
+    c.getResults = function(query) {
+        return c.server.get({ q: query }).then(function(response) {
+            var a = $filter('orderBy')(response.data.results, '-score');
+            return $filter('limitTo')(a, c.data.limit);
+        });
+    }
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>ul.dropdown-menu {&#13;
+    min-width: 100%;&#13;
+    border-radius: 0px 0px 4px 4px;&#13;
+    margin:0px;&#13;
+}&#13;
+&#13;
+ul.dropdown-menu a.ta-item {&#13;
+	line-height: 20px;&#13;
+}&#13;
+&#13;
+ul.dropdown-menu i.ta-icon, i.ta-img {&#13;
+    width: 20px;&#13;
+    height: 20px;&#13;
+    background-size: contain;&#13;
+    display: inline-block;&#13;
+    background-repeat: no-repeat;&#13;
+    background-position: center center;&#13;
+    text-align: center;&#13;
+    line-height: 20px;&#13;
+    float:left;&#13;
+    margin-right: 8px;&#13;
+}&#13;
+&#13;
+input[name="q"] {&#13;
+color: black;&#13;
+}</css>
+        <data_table>x_1129837_happyimm_property_info</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>test_id</id>
+        <internal>false</internal>
+        <link><![CDATA[function gg(scope) {
+    var lazyLoader = $injector.get("lazyLoader");
+    lazyLoader.putTemplates(scope.data.typeaheadTemplates);
+}]]></link>
+        <name>test</name>
+        <option_schema>[{ "name": "number", "label": "number", "type": "string" }, { "name": "post_code", "label": "post_code", "type": "choice" }, { "name": "glyph", "label": "glyph", "type": "string" }, { "name": "size", "label": "Size", "type": "string" }, { "hint": "Number of typeahead search results returned (default 15)", "name": "limit", "label": "Limit", "type": "integer" }]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    data.searchType = $sp.getParameter("t");
+    data.results = [];
+    data.searchMsg = gs.getMessage("Search");
+    data.limit = options.limit || 15;
+    var textQuery = '123TEXTQUERY321';
+
+   if (!input) {
+    data.typeaheadTemplates = {};
+
+    var searchGroupTemplatesGR = new GlideRecord("x_1129837_happyimm_property_info");
+    searchGroupTemplatesGR.query();
+    while (searchGroupTemplatesGR.next()) {
+        // Change the condition to check the "number" field
+        if (searchGroupTemplatesGR.getElement("number").getDisplayValue() == "true") {
+            // Adjust the key construction based on the new fields
+            var templateKey = "sp-typeahead-" + searchGroupTemplatesGR.getValue("number") + ".html";
+            
+            // Change field names for "price" and "postal_code"
+            var templateValue = $sp.translateTemplate(searchGroupTemplatesGR.getValue("price"));
+            
+            // Add the entry to the typeaheadTemplates object
+            data.typeaheadTemplates[templateKey] = templateValue;
+        }
+    }
+
+    return;
+}
+
+    data.q = input.q;
+
+    //Gotta decide if we want to use the portal's sources, or use the defaults declared by
+    //the sys property
+    var useDefaultPortals;
+    if (!$sp.getPortalRecord()) {
+        useDefaultPortals = true;
+    } else {
+        var searchSourcesForPortalGR = new GlideRecord("m2m_sp_portal_search_source");
+        searchSourcesForPortalGR.addQuery("happyimmoweb", $sp.getPortalRecord().getUniqueValue());
+        searchSourcesForPortalGR.query();
+        useDefaultPortals = searchSourcesForPortalGR.getRowCount() == 0;
+    }
+
+    if (useDefaultPortals) {
+        var defaultSearchSourceGR = new GlideRecord("sp_search_source");
+        var defaultSearchSourceIDList = gs.getProperty("glide.service_portal.default_search_sources", "");
+        defaultSearchSourceGR.addQuery("sys_id", "IN", defaultSearchSourceIDList);
+        defaultSearchSourceGR.addQuery("enable_typeahead", true);
+        defaultSearchSourceGR.query();
+        while (defaultSearchSourceGR.next()) {
+            getResults(defaultSearchSourceGR);
+        }
+    } else {
+        var m2mSearchSourceGR = new GlideRecord("m2m_sp_portal_search_source");
+        m2mSearchSourceGR.addQuery("sp_search_source.enable_typeahead", true);
+        m2mSearchSourceGR.addQuery("happyimmoweb", $sp.getPortalRecord().getUniqueValue());
+        m2mSearchSourceGR.query();
+        while (m2mSearchSourceGR.next()) {
+            getResults(m2mSearchSourceGR.getElement("sp_search_source").getRefRecord());
+        }
+    }
+
+    function getResults(gr) {
+        if (gr.is_scripted_source) {
+            var input = {};
+            input.query = data.q;
+            var evaluator = new GlideScopedEvaluator();
+            var results = evaluator.evaluateScript(gr, "data_fetch_script", input);
+
+            results.forEach(function(item) {
+                if (gr.getElement("advanced_typeahead_config").getDisplayValue() == "true")
+                    item.templateID = "sp-typeahead-" + gr.getValue("id") + ".html";
+                else {
+                    item.glyph = gr.getValue("typeahead_glyph");
+                    item.linkToPage = gr.getValue("page");
+                }
+                data.results.push(item);
+            });
+        } else {
+            var primaryField = gr.getValue("primary_display_field");
+            var displayFields = gr.getValue("display_fields");
+
+            var resultGR = new GlideRecordSecure(gr.getValue("source_table"));
+            var condition = gr.getValue("condition");
+            if (condition)
+                resultGR.addEncodedQuery(condition);
+            if (data.q)
+                resultGR.addQuery('123TEXTQUERY321', data.q);
+            resultGR.query();
+
+            var searchTableCount = 0;
+            while (resultGR.next() && searchTableCount < data.limit) {
+                if (!resultGR.canRead())
+                    continue;
+
+                var secondaryValues = {};
+
+                if (displayFields)
+                    displayFields.split(",").forEach(function(field) {
+                        var obj = getField(resultGR, field);
+                        secondaryValues[field] = obj;
+                    });
+
+                var item = {
+                    primary: (primaryField) ? resultGR.getValue(primaryField) : resultGR.getDisplayValue(),
+                    sys_id: resultGR.getUniqueValue(),
+                    table: resultGR.getTableName(),
+                    fields: secondaryValues
+                };
+
+                if (gr.getElement("advanced_typeahead_config").getDisplayValue() == "true")
+                    item.templateID = "sp-typeahead-" + gr.getValue("id") + ".html";
+                else {
+                    item.glyph = gr.getValue("typeahead_glyph");
+                    item.linkToPage = gr.getValue("page");
+                }
+
+                data.results.push(item);
+                searchTableCount++;
+            }
+        }
+
+        var pageGR = new GlideRecord("happyimmoweb");
+        if (pageGR.get(gr.getValue("page")))
+            var pageID = pageGR.getValue("id");
+
+        data.results.forEach(function(result) {
+            if (result.url)
+                return;
+
+            if (pageID) {
+                result.url = "?id=" + pageID;
+                if (result.sys_id)
+                    result.url += "&sys_id=" + result.sys_id;
+                if (result.table)
+                    result.url += "&table=" + result.table
+            } else {
+                result.url = "";
+            }
+        });
+    }
+
+    function getField(gr, name) {
+        var f = {};
+        f.display_value = gr.getDisplayValue(name);
+        f.value = gr.getValue(name);
+        var ge = gr.getElement(name);
+        if (ge == null)
+            return f;
+
+        f.type = ge.getED().getInternalType()
+        f.label = ge.getLabel();
+        return f;
+    }
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-19 19:45:29</sys_created_on>
+        <sys_id>f34a64d0931779101c3a3a5efaba101a</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>test</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_update_name>sp_widget_f34a64d0931779101c3a3a5efaba101a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-19 19:49:37</sys_updated_on>
+        <template><![CDATA[<form method="get" action="?">
+    <input type="hidden" name="id" value="search" />
+    <input type="hidden" name="t" value="{{data.searchType}}" />
+    <div class="input-group input-group-{{::c.options.size}}">
+        <!-- uses ui.bootstrap.typeahead -->
+        <input name="q" type="text" placeholder="{{::c.options.number}}" ng-model="c.selectedState" ng-model-options="{debounce: 250}" autocomplete="off" uib-typeahead="item as item.primary for item in c.getResults($viewValue)" typeahead-focus-first="false" typeahead-on-select="c.onSelect($item, $model, $label)"
+            typeahead-template-url="sp-typeahead.html" class="form-control input-typeahead" aria-label="{{::c.options.number}}" tabindex="0">
+        <span class="input-group-btn">
+      <button name="search" type="submit" class="btn btn-{{::c.options.post_code}}" aria-label="Submit {{::c.options.number}}">
+    	<i ng-if="::c.options.glyph" class="fa fa-{{::c.options.glyph}}"></i>
+      </button>
+    </span>
+    </div>
+</form>]]></template>
+    </sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</application>
+        <file_path/>
+        <instance_id>45b65c1f1b4eb5d019254089bd4bcb77</instance_id>
+        <instance_name>dev196055</instance_name>
+        <name>sp_widget_f34a64d0931779101c3a3a5efaba101a</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function sss($filter, $location) {
+    var c = this;
+    c.options.glyph = c.options.glyph || 'search';
+    c.options.title = c.options.title || c.data.searchMsg;
+
+    c.onSelect = function($item, $model, $label) {
+        if ($item.target)
+            window.open($item.url, $item.target);
+        else
+            $location.url($item.url);
+
+        /*if ($item.type == "sc")
+        	$location.search({id: 'sc_cat_item', sys_id: $item.sys_id});
+        if ($item.type == "sc_content") {
+        	if ($item.content_type == "kb")
+        		$location.search({id: 'kb_article', sys_id: $item.kb_article});
+        	else if ($item.content_type == "external")
+        		window.open($item.url, '_blank');
+        	else
+        		$location.search({id: 'sc_cat_item', sys_id: $item.sys_id});
+        }
+        if ($item.type == "sc_guide")
+        	$location.search({id: 'sc_cat_item_guide', sys_id: $item.sys_id});
+        if ($item.type == "kb")
+        	$location.search({id: 'kb_article', sys_id: $item.sys_id});
+        if ($item.type == "qa")
+        	$location.search({id: 'kb_social_qa_question', question_id: $item.sys_id});
+        if ($item.type == "rec")
+        	$location.search({id: $item.page, sys_id: $item.sys_id, table: $item.table});*/
+    };
+
+    c.getResults = function(query) {
+        return c.server.get({ q: query }).then(function(response) {
+            var a = $filter('orderBy')(response.data.results, '-score');
+            return $filter('limitTo')(a, c.data.limit);
+        });
+    }
+}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;ul.dropdown-menu {&amp;#13;
+    min-width: 100%;&amp;#13;
+    border-radius: 0px 0px 4px 4px;&amp;#13;
+    margin:0px;&amp;#13;
+}&amp;#13;
+&amp;#13;
+ul.dropdown-menu a.ta-item {&amp;#13;
+	line-height: 20px;&amp;#13;
+}&amp;#13;
+&amp;#13;
+ul.dropdown-menu i.ta-icon, i.ta-img {&amp;#13;
+    width: 20px;&amp;#13;
+    height: 20px;&amp;#13;
+    background-size: contain;&amp;#13;
+    display: inline-block;&amp;#13;
+    background-repeat: no-repeat;&amp;#13;
+    background-position: center center;&amp;#13;
+    text-align: center;&amp;#13;
+    line-height: 20px;&amp;#13;
+    float:left;&amp;#13;
+    margin-right: 8px;&amp;#13;
+}&amp;#13;
+&amp;#13;
+input[name="q"] {&amp;#13;
+color: black;&amp;#13;
+}&lt;/css&gt;&lt;data_table&gt;x_1129837_happyimm_property_info&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;test_id&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function gg(scope) {
+    var lazyLoader = $injector.get("lazyLoader");
+    lazyLoader.putTemplates(scope.data.typeaheadTemplates);
+}]]&gt;&lt;/link&gt;&lt;name&gt;test&lt;/name&gt;&lt;option_schema&gt;[{ "name": "number", "label": "number", "type": "string" }, { "name": "post_code", "label": "post_code", "type": "choice" }, { "name": "glyph", "label": "glyph", "type": "string" }, { "name": "size", "label": "Size", "type": "string" }, { "hint": "Number of typeahead search results returned (default 15)", "name": "limit", "label": "Limit", "type": "integer" }]&lt;/option_schema&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {
+    data.searchType = $sp.getParameter("t");
+    data.results = [];
+    data.searchMsg = gs.getMessage("Search");
+    data.limit = options.limit || 15;
+    var textQuery = '123TEXTQUERY321';
+
+   if (!input) {
+    data.typeaheadTemplates = {};
+
+    var searchGroupTemplatesGR = new GlideRecord("x_1129837_happyimm_property_info");
+    searchGroupTemplatesGR.query();
+    while (searchGroupTemplatesGR.next()) {
+        // Change the condition to check the "number" field
+        if (searchGroupTemplatesGR.getElement("number").getDisplayValue() == "true") {
+            // Adjust the key construction based on the new fields
+            var templateKey = "sp-typeahead-" + searchGroupTemplatesGR.getValue("number") + ".html";
+            
+            // Change field names for "price" and "postal_code"
+            var templateValue = $sp.translateTemplate(searchGroupTemplatesGR.getValue("price"));
+            
+            // Add the entry to the typeaheadTemplates object
+            data.typeaheadTemplates[templateKey] = templateValue;
+        }
+    }
+
+    return;
+}
+
+    data.q = input.q;
+
+    //Gotta decide if we want to use the portal's sources, or use the defaults declared by
+    //the sys property
+    var useDefaultPortals;
+    if (!$sp.getPortalRecord()) {
+        useDefaultPortals = true;
+    } else {
+        var searchSourcesForPortalGR = new GlideRecord("m2m_sp_portal_search_source");
+        searchSourcesForPortalGR.addQuery("happyimmoweb", $sp.getPortalRecord().getUniqueValue());
+        searchSourcesForPortalGR.query();
+        useDefaultPortals = searchSourcesForPortalGR.getRowCount() == 0;
+    }
+
+    if (useDefaultPortals) {
+        var defaultSearchSourceGR = new GlideRecord("sp_search_source");
+        var defaultSearchSourceIDList = gs.getProperty("glide.service_portal.default_search_sources", "");
+        defaultSearchSourceGR.addQuery("sys_id", "IN", defaultSearchSourceIDList);
+        defaultSearchSourceGR.addQuery("enable_typeahead", true);
+        defaultSearchSourceGR.query();
+        while (defaultSearchSourceGR.next()) {
+            getResults(defaultSearchSourceGR);
+        }
+    } else {
+        var m2mSearchSourceGR = new GlideRecord("m2m_sp_portal_search_source");
+        m2mSearchSourceGR.addQuery("sp_search_source.enable_typeahead", true);
+        m2mSearchSourceGR.addQuery("happyimmoweb", $sp.getPortalRecord().getUniqueValue());
+        m2mSearchSourceGR.query();
+        while (m2mSearchSourceGR.next()) {
+            getResults(m2mSearchSourceGR.getElement("sp_search_source").getRefRecord());
+        }
+    }
+
+    function getResults(gr) {
+        if (gr.is_scripted_source) {
+            var input = {};
+            input.query = data.q;
+            var evaluator = new GlideScopedEvaluator();
+            var results = evaluator.evaluateScript(gr, "data_fetch_script", input);
+
+            results.forEach(function(item) {
+                if (gr.getElement("advanced_typeahead_config").getDisplayValue() == "true")
+                    item.templateID = "sp-typeahead-" + gr.getValue("id") + ".html";
+                else {
+                    item.glyph = gr.getValue("typeahead_glyph");
+                    item.linkToPage = gr.getValue("page");
+                }
+                data.results.push(item);
+            });
+        } else {
+            var primaryField = gr.getValue("primary_display_field");
+            var displayFields = gr.getValue("display_fields");
+
+            var resultGR = new GlideRecordSecure(gr.getValue("source_table"));
+            var condition = gr.getValue("condition");
+            if (condition)
+                resultGR.addEncodedQuery(condition);
+            if (data.q)
+                resultGR.addQuery('123TEXTQUERY321', data.q);
+            resultGR.query();
+
+            var searchTableCount = 0;
+            while (resultGR.next() &amp;&amp; searchTableCount &lt; data.limit) {
+                if (!resultGR.canRead())
+                    continue;
+
+                var secondaryValues = {};
+
+                if (displayFields)
+                    displayFields.split(",").forEach(function(field) {
+                        var obj = getField(resultGR, field);
+                        secondaryValues[field] = obj;
+                    });
+
+                var item = {
+                    primary: (primaryField) ? resultGR.getValue(primaryField) : resultGR.getDisplayValue(),
+                    sys_id: resultGR.getUniqueValue(),
+                    table: resultGR.getTableName(),
+                    fields: secondaryValues
+                };
+
+                if (gr.getElement("advanced_typeahead_config").getDisplayValue() == "true")
+                    item.templateID = "sp-typeahead-" + gr.getValue("id") + ".html";
+                else {
+                    item.glyph = gr.getValue("typeahead_glyph");
+                    item.linkToPage = gr.getValue("page");
+                }
+
+                data.results.push(item);
+                searchTableCount++;
+            }
+        }
+
+        var pageGR = new GlideRecord("happyimmoweb");
+        if (pageGR.get(gr.getValue("page")))
+            var pageID = pageGR.getValue("id");
+
+        data.results.forEach(function(result) {
+            if (result.url)
+                return;
+
+            if (pageID) {
+                result.url = "?id=" + pageID;
+                if (result.sys_id)
+                    result.url += "&amp;sys_id=" + result.sys_id;
+                if (result.table)
+                    result.url += "&amp;table=" + result.table
+            } else {
+                result.url = "";
+            }
+        });
+    }
+
+    function getField(gr, name) {
+        var f = {};
+        f.display_value = gr.getDisplayValue(name);
+        f.value = gr.getValue(name);
+        var ge = gr.getElement(name);
+        if (ge == null)
+            return f;
+
+        f.type = ge.getED().getInternalType()
+        f.label = ge.getLabel();
+        return f;
+    }
+})();]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2023-12-19 19:45:29&lt;/sys_created_on&gt;&lt;sys_id&gt;f34a64d0931779101c3a3a5efaba101a&lt;/sys_id&gt;&lt;sys_mod_count&gt;2&lt;/sys_mod_count&gt;&lt;sys_name&gt;test&lt;/sys_name&gt;&lt;sys_package display_value="HappyImmo" source="x_1129837_happyimm"&gt;4dbd9096930731101c3a3a5efaba10a4&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="HappyImmo"&gt;4dbd9096930731101c3a3a5efaba10a4&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_f34a64d0931779101c3a3a5efaba101a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2023-12-19 19:49:37&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;form method="get" action="?"&gt;
+    &lt;input type="hidden" name="id" value="search" /&gt;
+    &lt;input type="hidden" name="t" value="{{data.searchType}}" /&gt;
+    &lt;div class="input-group input-group-{{::c.options.size}}"&gt;
+        &lt;!-- uses ui.bootstrap.typeahead --&gt;
+        &lt;input name="q" type="text" placeholder="{{::c.options.number}}" ng-model="c.selectedState" ng-model-options="{debounce: 250}" autocomplete="off" uib-typeahead="item as item.primary for item in c.getResults($viewValue)" typeahead-focus-first="false" typeahead-on-select="c.onSelect($item, $model, $label)"
+            typeahead-template-url="sp-typeahead.html" class="form-control input-typeahead" aria-label="{{::c.options.number}}" tabindex="0"&gt;
+        &lt;span class="input-group-btn"&gt;
+      &lt;button name="search" type="submit" class="btn btn-{{::c.options.post_code}}" aria-label="Submit {{::c.options.number}}"&gt;
+    	&lt;i ng-if="::c.options.glyph" class="fa fa-{{::c.options.glyph}}"&gt;&lt;/i&gt;
+      &lt;/button&gt;
+    &lt;/span&gt;
+    &lt;/div&gt;
+&lt;/form&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1819692437</payload_hash>
+        <record_name>test</record_name>
+        <reverted_from/>
+        <source>41bd9096930731101c3a3a5efaba10a9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-19 19:49:37</sys_created_on>
+        <sys_id>5c303c1c931779101c3a3a5efaba104b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18c83a06a5a0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-19 19:49:37</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>54303c1c23177910a37f25359fddee4b</update_guid>
+        <update_guid_history>54303c1c23177910a37f25359fddee4b:1819692437,f8dfe0d8ea17791052d87ad9a464d996:305260200,7b3f68988517791011c19bd82841f7b6:861082698</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="test">bf1f1ee4939fb9101c3a3a5efaba102a</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-20 22:32:46</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>2c5705157a55433186131d9e01380a89</sys_id>
+        <sys_metadata>f34a64d0931779101c3a3a5efaba101a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>test</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_scope_delete display_value="">1c3543a6040145908eb8e2564bcf0900</sys_scope_delete>
+        <sys_update_name>sp_widget_f34a64d0931779101c3a3a5efaba101a</sys_update_name>
+        <sys_update_version display_value="sp_widget_f34a64d0931779101c3a3a5efaba101a">5c303c1c931779101c3a3a5efaba104b</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-20 22:32:46</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

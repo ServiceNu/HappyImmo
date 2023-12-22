@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>4</order>
+        <roles/>
+        <short_description/>
+        <size/>
+        <sp_column display_value="1">e2c752729343f1101c3a3a5efaba1033</sp_column>
+        <sp_widget display_value="test">f34a64d0931779101c3a3a5efaba101a</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-19 19:46:41</sys_created_on>
+        <sys_id>5d8fe01c931779101c3a3a5efaba103f</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_update_name>sp_instance_5d8fe01c931779101c3a3a5efaba103f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-19 19:46:54</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"number": {
+		"value": "",
+		"displayValue": ""
+	},
+	"post_code": {
+		"value": "",
+		"displayValue": ""
+	},
+	"glyph": {
+		"value": "",
+		"displayValue": ""
+	},
+	"size": {
+		"value": "",
+		"displayValue": ""
+	},
+	"limit": {
+		"value": null,
+		"displayValue": ""
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="DELETE" query="documentkey=5d8fe01c931779101c3a3a5efaba103f"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</application>
+        <file_path/>
+        <instance_id>45b65c1f1b4eb5d019254089bd4bcb77</instance_id>
+        <instance_name>dev196055</instance_name>
+        <name>sp_instance_5d8fe01c931779101c3a3a5efaba103f</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_instance"&gt;&lt;sp_instance action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;class_name/&gt;&lt;color&gt;default&lt;/color&gt;&lt;css/&gt;&lt;glyph/&gt;&lt;id/&gt;&lt;order&gt;4&lt;/order&gt;&lt;roles/&gt;&lt;short_description/&gt;&lt;size/&gt;&lt;sp_column display_value="1"&gt;e2c752729343f1101c3a3a5efaba1033&lt;/sp_column&gt;&lt;sp_widget display_value="test"&gt;f34a64d0931779101c3a3a5efaba101a&lt;/sp_widget&gt;&lt;sys_class_name&gt;sp_instance&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2023-12-19 19:46:41&lt;/sys_created_on&gt;&lt;sys_id&gt;5d8fe01c931779101c3a3a5efaba103f&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name/&gt;&lt;sys_package display_value="HappyImmo" source="x_1129837_happyimm"&gt;4dbd9096930731101c3a3a5efaba10a4&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="HappyImmo"&gt;4dbd9096930731101c3a3a5efaba10a4&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_instance_5d8fe01c931779101c3a3a5efaba103f&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2023-12-19 19:46:54&lt;/sys_updated_on&gt;&lt;title/&gt;&lt;url/&gt;&lt;widget_parameters&gt;&lt;![CDATA[{
+	"number": {
+		"value": "",
+		"displayValue": ""
+	},
+	"post_code": {
+		"value": "",
+		"displayValue": ""
+	},
+	"glyph": {
+		"value": "",
+		"displayValue": ""
+	},
+	"size": {
+		"value": "",
+		"displayValue": ""
+	},
+	"limit": {
+		"value": null,
+		"displayValue": ""
+	}
+}]]&gt;&lt;/widget_parameters&gt;&lt;/sp_instance&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=5d8fe01c931779101c3a3a5efaba103f"/&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-2075924780</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>41bd9096930731101c3a3a5efaba10a9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-19 19:46:55</sys_created_on>
+        <sys_id>789fe01c931779101c3a3a5efaba10b6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18c839df08e0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-19 19:46:55</sys_updated_on>
+        <type>Instance</type>
+        <update_guid>309fe01c4d1779106802cea67cef41b6</update_guid>
+        <update_guid_history>309fe01c4d1779106802cea67cef41b6:-2075924780,518fe01c58177910dc578ccc3f84a442:659018985</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">a2e2ab9c9313b9101c3a3a5efaba10af</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-20 08:50:28</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance">sp_instance</sys_db_object>
+        <sys_id>99e476e839984bdb96ad76c50d5d74e1</sys_id>
+        <sys_metadata>5d8fe01c931779101c3a3a5efaba103f</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_scope_delete display_value="">1c3543a6040145908eb8e2564bcf0900</sys_scope_delete>
+        <sys_update_name>sp_instance_5d8fe01c931779101c3a3a5efaba103f</sys_update_name>
+        <sys_update_version display_value="sp_instance_5d8fe01c931779101c3a3a5efaba103f">789fe01c931779101c3a3a5efaba10b6</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-20 08:50:28</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

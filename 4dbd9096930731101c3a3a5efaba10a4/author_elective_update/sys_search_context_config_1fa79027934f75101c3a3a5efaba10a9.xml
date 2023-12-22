@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_search_context_config">
+    <sys_search_context_config action="DELETE">
+        <collapse_attachment>true</collapse_attachment>
+        <enable_exact_match>true</enable_exact_match>
+        <evam_definition/>
+        <genius_results_limit/>
+        <hit_highlighting>false</hit_highlighting>
+        <name>Custom Search</name>
+        <search_engine>zing</search_engine>
+        <search_profile/>
+        <search_results_limit>10</search_results_limit>
+        <show_tab_counts>true</show_tab_counts>
+        <spell_check>false</spell_check>
+        <suggestions_to_show_limit>10</suggestions_to_show_limit>
+        <sys_class_name>sys_search_context_config</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-17 10:07:29</sys_created_on>
+        <sys_id>1fa79027934f75101c3a3a5efaba10a9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Custom Search</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_update_name>sys_search_context_config_1fa79027934f75101c3a3a5efaba10a9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-17 10:07:29</sys_updated_on>
+        <ts_index_group/>
+        <view/>
+    </sys_search_context_config>
+    <sys_translated_text action="DELETE" query="documentkey=1fa79027934f75101c3a3a5efaba10a9"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</application>
+        <file_path/>
+        <instance_id>45b65c1f1b4eb5d019254089bd4bcb77</instance_id>
+        <instance_name>dev196055</instance_name>
+        <name>sys_search_context_config_1fa79027934f75101c3a3a5efaba10a9</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_search_context_config"><sys_search_context_config action="INSERT_OR_UPDATE"><collapse_attachment>true</collapse_attachment><enable_exact_match>true</enable_exact_match><evam_definition/><genius_results_limit/><hit_highlighting>false</hit_highlighting><name>Custom Search</name><search_engine>zing</search_engine><search_profile/><search_results_limit>10</search_results_limit><show_tab_counts>true</show_tab_counts><spell_check>false</spell_check><suggestions_to_show_limit>10</suggestions_to_show_limit><sys_class_name>sys_search_context_config</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2023-12-17 10:07:29</sys_created_on><sys_id>1fa79027934f75101c3a3a5efaba10a9</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Custom Search</sys_name><sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package><sys_policy/><sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope><sys_update_name>sys_search_context_config_1fa79027934f75101c3a3a5efaba10a9</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2023-12-17 10:07:29</sys_updated_on><ts_index_group/><view/></sys_search_context_config><sys_translated_text action="delete_multiple" query="documentkey=1fa79027934f75101c3a3a5efaba10a9"/></record_update>]]></payload>
+        <payload_hash>1734316659</payload_hash>
+        <record_name>Custom Search</record_name>
+        <reverted_from/>
+        <source>41bd9096930731101c3a3a5efaba10a9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-17 10:07:29</sys_created_on>
+        <sys_id>a9c71827934f75101c3a3a5efaba101d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18c773ebe570000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-17 10:07:29</sys_updated_on>
+        <type>Search Application Configuration</type>
+        <update_guid>edc71827894f7510503446a95ddacf1c</update_guid>
+        <update_guid_history>edc71827894f7510503446a95ddacf1c:1734316659</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-17 10:07:41</sys_created_on>
+        <sys_db_object display_value="" name="sys_search_context_config">sys_search_context_config</sys_db_object>
+        <sys_id>4f28267eb3c84160a45290cbe785f290</sys_id>
+        <sys_metadata>1fa79027934f75101c3a3a5efaba10a9</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Custom Search</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_scope_delete display_value="">1c3543a6040145908eb8e2564bcf0900</sys_scope_delete>
+        <sys_update_name>sys_search_context_config_1fa79027934f75101c3a3a5efaba10a9</sys_update_name>
+        <sys_update_version display_value="sys_search_context_config_1fa79027934f75101c3a3a5efaba10a9">a9c71827934f75101c3a3a5efaba101d</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-17 10:07:41</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

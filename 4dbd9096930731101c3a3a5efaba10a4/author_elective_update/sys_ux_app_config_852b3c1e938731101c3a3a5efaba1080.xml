@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ux_app_config">
+    <sys_ux_app_config action="DELETE">
+        <active>true</active>
+        <custom_icon/>
+        <default_route_type/>
+        <description>This is a custom portal experience.</description>
+        <disable_auto_reflow>false</disable_auto_reflow>
+        <encode_query_string>false</encode_query_string>
+        <icon/>
+        <landing_path>landing</landing_path>
+        <name>Custom Portal App Config</name>
+        <prefetch_limits/>
+        <sys_class_name>sys_ux_app_config</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2023-12-13 15:29:39</sys_created_on>
+        <sys_id>852b3c1e938731101c3a3a5efaba1080</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Custom Portal App Config</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_update_name>sys_ux_app_config_852b3c1e938731101c3a3a5efaba1080</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2023-12-13 15:29:39</sys_updated_on>
+    </sys_ux_app_config>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</application>
+        <file_path/>
+        <instance_id>45b65c1f1b4eb5d019254089bd4bcb77</instance_id>
+        <instance_name>dev196055</instance_name>
+        <name>sys_ux_app_config_852b3c1e938731101c3a3a5efaba1080</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ux_app_config"><sys_ux_app_config action="INSERT_OR_UPDATE"><active>true</active><custom_icon/><default_route_type/><description>This is a custom portal experience.</description><disable_auto_reflow>false</disable_auto_reflow><encode_query_string>false</encode_query_string><icon/><landing_path>landing</landing_path><name>Custom Portal App Config</name><prefetch_limits/><sys_class_name>sys_ux_app_config</sys_class_name><sys_created_by>system</sys_created_by><sys_created_on>2023-12-13 15:29:39</sys_created_on><sys_id>852b3c1e938731101c3a3a5efaba1080</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Custom Portal App Config</sys_name><sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package><sys_policy/><sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope><sys_update_name>sys_ux_app_config_852b3c1e938731101c3a3a5efaba1080</sys_update_name><sys_updated_by>system</sys_updated_by><sys_updated_on>2023-12-13 15:29:39</sys_updated_on></sys_ux_app_config></record_update>]]></payload>
+        <payload_hash>-1835161422</payload_hash>
+        <record_name>Custom Portal App Config</record_name>
+        <reverted_from/>
+        <source>fc61bb31930331101c3a3a5efaba10bd</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by/>
+        <sys_created_on>2023-12-12 15:28:54</sys_created_on>
+        <sys_id>ab0cb49e938731101c3a3a5efaba1011</sys_id>
+        <sys_mod_count/>
+        <sys_recorded_at>18c5ea532f00000000</sys_recorded_at>
+        <sys_updated_by/>
+        <sys_updated_on/>
+        <type>UX App Configuration</type>
+        <update_guid>6b0cb49ea78731108cb2302cd1093711</update_guid>
+        <update_guid_history>6b0cb49ea78731108cb2302cd1093711:-1835161422</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-13 15:33:37</sys_created_on>
+        <sys_db_object display_value="" name="sys_ux_app_config">sys_ux_app_config</sys_db_object>
+        <sys_id>8043bbea631b434a8f0567f1f5f0f5e4</sys_id>
+        <sys_metadata>852b3c1e938731101c3a3a5efaba1080</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Custom Portal App Config</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_scope_delete display_value="">1c3543a6040145908eb8e2564bcf0900</sys_scope_delete>
+        <sys_update_name>sys_ux_app_config_852b3c1e938731101c3a3a5efaba1080</sys_update_name>
+        <sys_update_version display_value="sys_ux_app_config_852b3c1e938731101c3a3a5efaba1080">ab0cb49e938731101c3a3a5efaba1011</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-13 15:33:37</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

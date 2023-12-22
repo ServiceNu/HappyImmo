@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">75b8356e930f71101c3a3a5efaba1067</sp_column>
+        <sp_widget display_value="HTML">8679ef89cb21120000f8d856634c9c4f</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-14 15:50:37</sys_created_on>
+        <sys_id>a2894e62938f71101c3a3a5efaba10c0</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_update_name>sp_instance_a2894e62938f71101c3a3a5efaba10c0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-14 15:57:49</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"html": {
+		"value": "<div class=\"panel panel-{{::c.options.color}} b\">\r\n<div class=\"panel-heading\">\r\n<h3 class=\"h4 panel-title\">{{::c.options.title}}</h3>\r\n<!-- <i class=\"fa fa-filter\" ng-click=\"c.toggleFilter()\" ng-class=\"{'disabled-filter': !c.showFilter}\"></i> -->\r\n<div><input class=\"form-control input-sm filter-box\" type=\"text\" placeholder=\"{{::data.filterMsg}}\" aria-label=\"${Filter}\" /></div>\r\n</div>\r\n<ul class=\"list-group hide-x-overflow\" style=\"overflow-y: auto;\">\r\n<li class=\"list-group-item\"><a> <span class=\"pull-left m-r\"> <img class=\"img-sm\" alt=\"...\" /> </span></a>\r\n<div>\r\n<div>{{item.display_field.display_value}}</div>\r\n</div>\r\n<div><small class=\"text-muted\"> &bull; <span title=\"{{::f.label}}\"> {{f.display_value}} {{f.display_value}} {{f.display_value}} </span> </small></div>\r\n</li>\r\n</ul>\r\n<div class=\"list-group-item\">${No records found}</div>\r\n<div class=\"panel-footer\">\r\n<div class=\"h4 number-shown-label\">{{c.getMaxShownLabel(c.options.maximum_entries, c.data.count)}}</div>\r\n<a class=\"pull-right\" aria-label=\"{{::data.viewAllMsg}} - {{::c.options.title}}\">${View all}</a></div>\r\n</div>",
+		"displayValue": "<div class=\"panel panel-{{::c.options.color}} b\">\n<div class=\"panel-heading\">\n<h3 class=\"h4 panel-title\">{{::c.options.title}}</h3>\n<!-- <i class=\"fa fa-filter\" ng-click=\"c.toggleFilter()\" ng-class=\"{'disabled-filter': !c.showFilter}\"></i> -->\n<div><input class=\"form-control input-sm filter-box\" type=\"text\" placeholder=\"{{::data.filterMsg}}\" aria-label=\"${Filter}\" /></div>\n</div>\n<ul class=\"list-group hide-x-overflow\" style=\"overflow-y: auto;\">\n<li class=\"list-group-item\"><a> <span class=\"pull-left m-r\"> <img class=\"img-sm\" alt=\"...\" /> </span></a>\n<div>\n<div>{{item.display_field.display_value}}</div>\n</div>\n<div><small class=\"text-muted\"> &bull; <span title=\"{{::f.label}}\"> {{f.display_value}} {{f.display_value}} {{f.display_value}} </span> </small></div>\n</li>\n</ul>\n<div class=\"list-group-item\">${No records found}</div>\n<div class=\"panel-footer\">\n<div class=\"h4 number-shown-label\">{{c.getMaxShownLabel(c.options.maximum_entries, c.data.count)}}</div>\n<a class=\"pull-right\" aria-label=\"{{::data.viewAllMsg}} - {{::c.options.title}}\">${View all}</a></div>\n</div>"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="DELETE" query="documentkey=a2894e62938f71101c3a3a5efaba10c0"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</application>
+        <file_path/>
+        <instance_id>45b65c1f1b4eb5d019254089bd4bcb77</instance_id>
+        <instance_name>dev196055</instance_name>
+        <name>sp_instance_a2894e62938f71101c3a3a5efaba10c0</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_instance"&gt;&lt;sp_instance action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;class_name/&gt;&lt;color&gt;default&lt;/color&gt;&lt;css/&gt;&lt;glyph/&gt;&lt;id/&gt;&lt;order&gt;1&lt;/order&gt;&lt;roles/&gt;&lt;short_description/&gt;&lt;size&gt;md&lt;/size&gt;&lt;sp_column display_value="1"&gt;75b8356e930f71101c3a3a5efaba1067&lt;/sp_column&gt;&lt;sp_widget display_value="HTML"&gt;8679ef89cb21120000f8d856634c9c4f&lt;/sp_widget&gt;&lt;sys_class_name&gt;sp_instance&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2023-12-14 15:50:37&lt;/sys_created_on&gt;&lt;sys_id&gt;a2894e62938f71101c3a3a5efaba10c0&lt;/sys_id&gt;&lt;sys_mod_count&gt;4&lt;/sys_mod_count&gt;&lt;sys_name/&gt;&lt;sys_package display_value="HappyImmo" source="x_1129837_happyimm"&gt;4dbd9096930731101c3a3a5efaba10a4&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="HappyImmo"&gt;4dbd9096930731101c3a3a5efaba10a4&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_instance_a2894e62938f71101c3a3a5efaba10c0&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2023-12-14 15:57:49&lt;/sys_updated_on&gt;&lt;title/&gt;&lt;url/&gt;&lt;widget_parameters&gt;&lt;![CDATA[{
+	"html": {
+		"value": "&lt;div class=\"panel panel-{{::c.options.color}} b\"&gt;\r\n&lt;div class=\"panel-heading\"&gt;\r\n&lt;h3 class=\"h4 panel-title\"&gt;{{::c.options.title}}&lt;/h3&gt;\r\n&lt;!-- &lt;i class=\"fa fa-filter\" ng-click=\"c.toggleFilter()\" ng-class=\"{'disabled-filter': !c.showFilter}\"&gt;&lt;/i&gt; --&gt;\r\n&lt;div&gt;&lt;input class=\"form-control input-sm filter-box\" type=\"text\" placeholder=\"{{::data.filterMsg}}\" aria-label=\"${Filter}\" /&gt;&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;ul class=\"list-group hide-x-overflow\" style=\"overflow-y: auto;\"&gt;\r\n&lt;li class=\"list-group-item\"&gt;&lt;a&gt; &lt;span class=\"pull-left m-r\"&gt; &lt;img class=\"img-sm\" alt=\"...\" /&gt; &lt;/span&gt;&lt;/a&gt;\r\n&lt;div&gt;\r\n&lt;div&gt;{{item.display_field.display_value}}&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;div&gt;&lt;small class=\"text-muted\"&gt; &amp;bull; &lt;span title=\"{{::f.label}}\"&gt; {{f.display_value}} {{f.display_value}} {{f.display_value}} &lt;/span&gt; &lt;/small&gt;&lt;/div&gt;\r\n&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;div class=\"list-group-item\"&gt;${No records found}&lt;/div&gt;\r\n&lt;div class=\"panel-footer\"&gt;\r\n&lt;div class=\"h4 number-shown-label\"&gt;{{c.getMaxShownLabel(c.options.maximum_entries, c.data.count)}}&lt;/div&gt;\r\n&lt;a class=\"pull-right\" aria-label=\"{{::data.viewAllMsg}} - {{::c.options.title}}\"&gt;${View all}&lt;/a&gt;&lt;/div&gt;\r\n&lt;/div&gt;",
+		"displayValue": "&lt;div class=\"panel panel-{{::c.options.color}} b\"&gt;\n&lt;div class=\"panel-heading\"&gt;\n&lt;h3 class=\"h4 panel-title\"&gt;{{::c.options.title}}&lt;/h3&gt;\n&lt;!-- &lt;i class=\"fa fa-filter\" ng-click=\"c.toggleFilter()\" ng-class=\"{'disabled-filter': !c.showFilter}\"&gt;&lt;/i&gt; --&gt;\n&lt;div&gt;&lt;input class=\"form-control input-sm filter-box\" type=\"text\" placeholder=\"{{::data.filterMsg}}\" aria-label=\"${Filter}\" /&gt;&lt;/div&gt;\n&lt;/div&gt;\n&lt;ul class=\"list-group hide-x-overflow\" style=\"overflow-y: auto;\"&gt;\n&lt;li class=\"list-group-item\"&gt;&lt;a&gt; &lt;span class=\"pull-left m-r\"&gt; &lt;img class=\"img-sm\" alt=\"...\" /&gt; &lt;/span&gt;&lt;/a&gt;\n&lt;div&gt;\n&lt;div&gt;{{item.display_field.display_value}}&lt;/div&gt;\n&lt;/div&gt;\n&lt;div&gt;&lt;small class=\"text-muted\"&gt; &amp;bull; &lt;span title=\"{{::f.label}}\"&gt; {{f.display_value}} {{f.display_value}} {{f.display_value}} &lt;/span&gt; &lt;/small&gt;&lt;/div&gt;\n&lt;/li&gt;\n&lt;/ul&gt;\n&lt;div class=\"list-group-item\"&gt;${No records found}&lt;/div&gt;\n&lt;div class=\"panel-footer\"&gt;\n&lt;div class=\"h4 number-shown-label\"&gt;{{c.getMaxShownLabel(c.options.maximum_entries, c.data.count)}}&lt;/div&gt;\n&lt;a class=\"pull-right\" aria-label=\"{{::data.viewAllMsg}} - {{::c.options.title}}\"&gt;${View all}&lt;/a&gt;&lt;/div&gt;\n&lt;/div&gt;"
+	}
+}]]&gt;&lt;/widget_parameters&gt;&lt;/sp_instance&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=a2894e62938f71101c3a3a5efaba10c0"/&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>258636156</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>41bd9096930731101c3a3a5efaba10a9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-14 15:57:50</sys_created_on>
+        <sys_id>103bcee2938f71101c3a3a5efaba1074</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18c690c69600000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-14 15:57:50</sys_updated_on>
+        <type>Instance</type>
+        <update_guid>183bcee2418f71102d749c9d8aa1c073</update_guid>
+        <update_guid_history>183bcee2418f71102d749c9d8aa1c073:258636156,120b4ee27f8f71108d538d8f87673791:-27614444,27eacae2ef8f7110a34141272aba9ad1:681988592,1dda4ae2e18f71102b6833ad8db9de8a:-1906124814,7e894e62788f711026845fe0c1de57c1:-1098501732</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">004b8226938f71101c3a3a5efaba10ea</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-14 15:58:05</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance">sp_instance</sys_db_object>
+        <sys_id>2618f7883f8749e09b219d5276687fe4</sys_id>
+        <sys_metadata>a2894e62938f71101c3a3a5efaba10c0</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_scope_delete display_value="">1c3543a6040145908eb8e2564bcf0900</sys_scope_delete>
+        <sys_update_name>sp_instance_a2894e62938f71101c3a3a5efaba10c0</sys_update_name>
+        <sys_update_version display_value="sp_instance_a2894e62938f71101c3a3a5efaba10c0">103bcee2938f71101c3a3a5efaba1074</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-14 15:58:05</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
