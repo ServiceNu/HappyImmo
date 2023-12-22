@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance_vlist action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <display_field>number</display_field>
+        <field_list/>
+        <filter table="x_1129837_happyimm_property_info">active=true</filter>
+        <glyph/>
+        <id/>
+        <maximum_entries>8</maximum_entries>
+        <order>1</order>
+        <order_by/>
+        <order_direction>asc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">75b8356e930f71101c3a3a5efaba1067</sp_column>
+        <sp_page display_value="form">ed5f8ec347730200ba13a5554ee49046</sp_page>
+        <sp_widget/>
+        <sys_class_name>sp_instance_vlist</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-15 08:09:44</sys_created_on>
+        <sys_id>c1a9e57a934fb1101c3a3a5efaba10ea</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>List of properties</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_update_name>sp_instance_vlist_c1a9e57a934fb1101c3a3a5efaba10ea</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-15 08:52:34</sys_updated_on>
+        <table>x_1129837_happyimm_property_info</table>
+        <title>List of properties</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"always_show": {
+		"value": "",
+		"displayValue": ""
+	},
+	"panel_body_height": {
+		"value": "",
+		"displayValue": ""
+	},
+	"image_field": {
+		"value": "image",
+		"displayValue": "image"
+	},
+	"secondary_fields": {
+		"value": "postal_code,description,price",
+		"displayValue": "postal_code,description,price"
+	},
+	"rounded_images": {
+		"value": "",
+		"displayValue": ""
+	},
+	"list_page": {
+		"value": "ade7f9ea930f71101c3a3a5efaba1004",
+		"displayValue": "happy_immoweb"
+	},
+	"hide_footer": {
+		"value": "",
+		"displayValue": ""
+	},
+	"view": {
+		"value": "",
+		"displayValue": ""
+	},
+	"disable_record_watcher": {
+		"value": "",
+		"displayValue": ""
+	},
+	"filter_acls": {
+		"value": "false",
+		"displayValue": "false"
+	}
+}]]></widget_parameters>
+    </sp_instance_vlist>
+    <sys_translated_text action="DELETE" query="documentkey=c1a9e57a934fb1101c3a3a5efaba10ea"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</application>
+        <file_path/>
+        <instance_id>45b65c1f1b4eb5d019254089bd4bcb77</instance_id>
+        <instance_name>dev196055</instance_name>
+        <name>sp_instance_vlist_c1a9e57a934fb1101c3a3a5efaba10ea</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_instance"&gt;&lt;sp_instance_vlist action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;class_name/&gt;&lt;color&gt;default&lt;/color&gt;&lt;css/&gt;&lt;display_field&gt;number&lt;/display_field&gt;&lt;field_list/&gt;&lt;filter table="x_1129837_happyimm_property_info"&gt;active=true&lt;/filter&gt;&lt;glyph/&gt;&lt;id/&gt;&lt;maximum_entries&gt;8&lt;/maximum_entries&gt;&lt;order&gt;1&lt;/order&gt;&lt;order_by/&gt;&lt;order_direction&gt;asc&lt;/order_direction&gt;&lt;roles/&gt;&lt;short_description/&gt;&lt;size&gt;md&lt;/size&gt;&lt;sp_column display_value="1"&gt;75b8356e930f71101c3a3a5efaba1067&lt;/sp_column&gt;&lt;sp_page display_value="form"&gt;ed5f8ec347730200ba13a5554ee49046&lt;/sp_page&gt;&lt;sp_widget/&gt;&lt;sys_class_name&gt;sp_instance_vlist&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2023-12-15 08:09:44&lt;/sys_created_on&gt;&lt;sys_id&gt;c1a9e57a934fb1101c3a3a5efaba10ea&lt;/sys_id&gt;&lt;sys_mod_count&gt;3&lt;/sys_mod_count&gt;&lt;sys_name&gt;List of properties&lt;/sys_name&gt;&lt;sys_package display_value="HappyImmo" source="x_1129837_happyimm"&gt;4dbd9096930731101c3a3a5efaba10a4&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="HappyImmo"&gt;4dbd9096930731101c3a3a5efaba10a4&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_instance_vlist_c1a9e57a934fb1101c3a3a5efaba10ea&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2023-12-15 08:52:34&lt;/sys_updated_on&gt;&lt;table&gt;x_1129837_happyimm_property_info&lt;/table&gt;&lt;title&gt;List of properties&lt;/title&gt;&lt;url/&gt;&lt;widget_parameters&gt;&lt;![CDATA[{
+	"always_show": {
+		"value": "",
+		"displayValue": ""
+	},
+	"panel_body_height": {
+		"value": "",
+		"displayValue": ""
+	},
+	"image_field": {
+		"value": "image",
+		"displayValue": "image"
+	},
+	"secondary_fields": {
+		"value": "postal_code,description,price",
+		"displayValue": "postal_code,description,price"
+	},
+	"rounded_images": {
+		"value": "",
+		"displayValue": ""
+	},
+	"list_page": {
+		"value": "ade7f9ea930f71101c3a3a5efaba1004",
+		"displayValue": "happy_immoweb"
+	},
+	"hide_footer": {
+		"value": "",
+		"displayValue": ""
+	},
+	"view": {
+		"value": "",
+		"displayValue": ""
+	},
+	"disable_record_watcher": {
+		"value": "",
+		"displayValue": ""
+	},
+	"filter_acls": {
+		"value": "false",
+		"displayValue": "false"
+	}
+}]]&gt;&lt;/widget_parameters&gt;&lt;/sp_instance_vlist&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=c1a9e57a934fb1101c3a3a5efaba10ea"/&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1260108562</payload_hash>
+        <record_name>List of properties</record_name>
+        <reverted_from/>
+        <source>41bd9096930731101c3a3a5efaba10a9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-15 09:55:32</sys_created_on>
+        <sys_id>72d1ce7693cfb1101c3a3a5efaba1012</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18c6ce714110000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-15 09:55:32</sys_updated_on>
+        <type>Instance of Simple List</type>
+        <update_guid>247375365b8fb1102a686adfb431dc0e</update_guid>
+        <update_guid_history>247375365b8fb1102a686adfb431dc0e:869916969,247375365b8fb1102a686adfb431dc0e:869916969,3a433d36018fb110ae9b2085257f6c0c:-1315816909,e26aa1ba8e4fb110055fce44a12879c7:1068393106,e26aa1ba8e4fb110055fce44a12879c7:1068393106,99a9e57aa34fb110e1876a3b2d1575ec:274831401</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="List of properties">ac8f35379387f5101c3a3a5efaba1072</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-18 12:19:11</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance_vlist">sp_instance_vlist</sys_db_object>
+        <sys_id>86feecd2ee7b4bdca2df11dcc6db5c44</sys_id>
+        <sys_metadata>c1a9e57a934fb1101c3a3a5efaba10ea</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>List of properties</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_scope_delete display_value="">1c3543a6040145908eb8e2564bcf0900</sys_scope_delete>
+        <sys_update_name>sp_instance_vlist_c1a9e57a934fb1101c3a3a5efaba10ea</sys_update_name>
+        <sys_update_version display_value="sp_instance_vlist_c1a9e57a934fb1101c3a3a5efaba10ea">72d1ce7693cfb1101c3a3a5efaba1012</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-18 12:19:11</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

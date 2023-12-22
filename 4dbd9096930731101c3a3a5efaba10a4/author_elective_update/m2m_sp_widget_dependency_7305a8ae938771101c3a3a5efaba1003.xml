@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency">
+    <m2m_sp_widget_dependency action="DELETE">
+        <sp_dependency display_value="sp_codemirror_includes">016f19255b301200e39fc7ad31f91abd</sp_dependency>
+        <sp_widget display_value="Copy of SC Catalog Item">f30568ae938771101c3a3a5efaba10fe</sp_widget>
+        <sys_class_name>m2m_sp_widget_dependency</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-14 08:31:36</sys_created_on>
+        <sys_id>7305a8ae938771101c3a3a5efaba1003</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>sp_codemirror_includes.Copy of SC Catalog Item</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_update_name>m2m_sp_widget_dependency_7305a8ae938771101c3a3a5efaba1003</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-14 08:31:36</sys_updated_on>
+    </m2m_sp_widget_dependency>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</application>
+        <file_path/>
+        <instance_id>45b65c1f1b4eb5d019254089bd4bcb77</instance_id>
+        <instance_name>dev196055</instance_name>
+        <name>m2m_sp_widget_dependency_7305a8ae938771101c3a3a5efaba1003</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency"><m2m_sp_widget_dependency action="INSERT_OR_UPDATE"><sp_dependency display_value="sp_codemirror_includes">016f19255b301200e39fc7ad31f91abd</sp_dependency><sp_widget display_value="Copy of SC Catalog Item">f30568ae938771101c3a3a5efaba10fe</sp_widget><sys_class_name>m2m_sp_widget_dependency</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2023-12-14 08:31:36</sys_created_on><sys_id>7305a8ae938771101c3a3a5efaba1003</sys_id><sys_mod_count>0</sys_mod_count><sys_name>sp_codemirror_includes.Copy of SC Catalog Item</sys_name><sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package><sys_policy/><sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope><sys_update_name>m2m_sp_widget_dependency_7305a8ae938771101c3a3a5efaba1003</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2023-12-14 08:31:36</sys_updated_on></m2m_sp_widget_dependency></record_update>]]></payload>
+        <payload_hash>145202581</payload_hash>
+        <record_name>sp_codemirror_includes.Copy of SC Catalog Item</record_name>
+        <reverted_from/>
+        <source>41bd9096930731101c3a3a5efaba10a9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-14 08:31:36</sys_created_on>
+        <sys_id>7305a8ae938771101c3a3a5efaba1005</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18c6773e20b0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-14 08:31:36</sys_updated_on>
+        <type>Widget Dependency</type>
+        <update_guid>b705a8aec18771102af376bcd0f39804</update_guid>
+        <update_guid_history>b705a8aec18771102af376bcd0f39804:145202581</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="sp_codemirror_includes.Copy of SC Catalog Item">0a47b9ea930f71101c3a3a5efaba1009</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-14 14:30:51</sys_created_on>
+        <sys_db_object display_value="" name="m2m_sp_widget_dependency">m2m_sp_widget_dependency</sys_db_object>
+        <sys_id>3080a9b6611e4be0b6b3073a56583900</sys_id>
+        <sys_metadata>7305a8ae938771101c3a3a5efaba1003</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>sp_codemirror_includes.Copy of SC Catalog Item</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_scope_delete display_value="">1c3543a6040145908eb8e2564bcf0900</sys_scope_delete>
+        <sys_update_name>m2m_sp_widget_dependency_7305a8ae938771101c3a3a5efaba1003</sys_update_name>
+        <sys_update_version display_value="m2m_sp_widget_dependency_7305a8ae938771101c3a3a5efaba1003">7305a8ae938771101c3a3a5efaba1005</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-14 14:30:51</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

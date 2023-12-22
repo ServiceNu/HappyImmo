@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_ais">
+    <sp_instance_ais action="DELETE">
+        <active>true</active>
+        <ai_search_source_filter/>
+        <class_name/>
+        <color/>
+        <css/>
+        <disable_all_suggestions>false</disable_all_suggestions>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <placeholder>Search</placeholder>
+        <roles/>
+        <search_application/>
+        <search_results_configuration display_value="Service Portal Search">80eb579d53671010968addeeff7b1215</search_results_configuration>
+        <short_description/>
+        <size/>
+        <sp_column display_value="2">fcd4a5779307f5101c3a3a5efaba108c</sp_column>
+        <sp_widget display_value="Typeahead Search">fa20ec02cb31020000f8d856634c9ce9</sp_widget>
+        <spell_check_font_size>xl</spell_check_font_size>
+        <sys_class_name>sp_instance_ais</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-18 10:17:41</sys_created_on>
+        <sys_id>e0b365379307f5101c3a3a5efaba1053</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Search</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_update_name>sp_instance_ais_e0b365379307f5101c3a3a5efaba1053</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-18 10:32:48</sys_updated_on>
+        <title>Search</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"title": {
+		"value": "Search",
+		"displayValue": "Search"
+	},
+	"color": {
+		"value": "",
+		"displayValue": ""
+	},
+	"glyph": {
+		"value": "",
+		"displayValue": ""
+	},
+	"size": {
+		"value": "",
+		"displayValue": ""
+	},
+	"limit": {
+		"value": null,
+		"displayValue": ""
+	},
+	"contextual_search_sources": {
+		"value": "cd62653b9383f5101c3a3a5efaba10b2",
+		"displayValue": [
+			"Happy Search"
+		]
+	}
+}]]></widget_parameters>
+    </sp_instance_ais>
+    <sys_translated_text action="DELETE" query="documentkey=e0b365379307f5101c3a3a5efaba1053"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</application>
+        <file_path/>
+        <instance_id>45b65c1f1b4eb5d019254089bd4bcb77</instance_id>
+        <instance_name>dev196055</instance_name>
+        <name>sp_instance_ais_e0b365379307f5101c3a3a5efaba1053</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_instance_ais"&gt;&lt;sp_instance_ais action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;ai_search_source_filter/&gt;&lt;class_name/&gt;&lt;color/&gt;&lt;css/&gt;&lt;disable_all_suggestions&gt;false&lt;/disable_all_suggestions&gt;&lt;glyph/&gt;&lt;id/&gt;&lt;order&gt;1&lt;/order&gt;&lt;placeholder&gt;Search&lt;/placeholder&gt;&lt;roles/&gt;&lt;search_application/&gt;&lt;search_results_configuration display_value="Service Portal Search"&gt;80eb579d53671010968addeeff7b1215&lt;/search_results_configuration&gt;&lt;short_description/&gt;&lt;size/&gt;&lt;sp_column display_value="2"&gt;fcd4a5779307f5101c3a3a5efaba108c&lt;/sp_column&gt;&lt;sp_widget display_value="Typeahead Search"&gt;fa20ec02cb31020000f8d856634c9ce9&lt;/sp_widget&gt;&lt;spell_check_font_size&gt;xl&lt;/spell_check_font_size&gt;&lt;sys_class_name&gt;sp_instance_ais&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2023-12-18 10:17:41&lt;/sys_created_on&gt;&lt;sys_id&gt;e0b365379307f5101c3a3a5efaba1053&lt;/sys_id&gt;&lt;sys_mod_count&gt;3&lt;/sys_mod_count&gt;&lt;sys_name&gt;Search&lt;/sys_name&gt;&lt;sys_package display_value="HappyImmo" source="x_1129837_happyimm"&gt;4dbd9096930731101c3a3a5efaba10a4&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="HappyImmo"&gt;4dbd9096930731101c3a3a5efaba10a4&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_instance_ais_e0b365379307f5101c3a3a5efaba1053&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2023-12-18 10:32:48&lt;/sys_updated_on&gt;&lt;title&gt;Search&lt;/title&gt;&lt;url/&gt;&lt;widget_parameters&gt;&lt;![CDATA[{
+	"title": {
+		"value": "Search",
+		"displayValue": "Search"
+	},
+	"color": {
+		"value": "",
+		"displayValue": ""
+	},
+	"glyph": {
+		"value": "",
+		"displayValue": ""
+	},
+	"size": {
+		"value": "",
+		"displayValue": ""
+	},
+	"limit": {
+		"value": null,
+		"displayValue": ""
+	},
+	"contextual_search_sources": {
+		"value": "cd62653b9383f5101c3a3a5efaba10b2",
+		"displayValue": [
+			"Happy Search"
+		]
+	}
+}]]&gt;&lt;/widget_parameters&gt;&lt;/sp_instance_ais&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=e0b365379307f5101c3a3a5efaba1053"/&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1797268772</payload_hash>
+        <record_name>Search</record_name>
+        <reverted_from/>
+        <source>41bd9096930731101c3a3a5efaba10a9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-18 10:32:48</sys_created_on>
+        <sys_id>4a27e53b9307f5101c3a3a5efaba1027</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18c7c7c47d50000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-18 10:32:48</sys_updated_on>
+        <type>Instance with Search</type>
+        <update_guid>4227e53b5607f510d086d6fca2bca527</update_guid>
+        <update_guid_history>4227e53b5607f510d086d6fca2bca527:1797268772,cde46d777e07f5102e1e34446ac74a0b:1318175512,1a04e1372407f51027a9ff8e97baa4b0:1764184455,20b36537b607f510aefc6568352c7455:1135546932</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Search">bd6f31bf9307f5101c3a3a5efaba1096</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-18 12:18:44</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance_ais">sp_instance_ais</sys_db_object>
+        <sys_id>624c74c55dff4ce296473362e95f60f1</sys_id>
+        <sys_metadata>e0b365379307f5101c3a3a5efaba1053</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Search</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_scope_delete display_value="">1c3543a6040145908eb8e2564bcf0900</sys_scope_delete>
+        <sys_update_name>sp_instance_ais_e0b365379307f5101c3a3a5efaba1053</sys_update_name>
+        <sys_update_version display_value="sp_instance_ais_e0b365379307f5101c3a3a5efaba1053">4a27e53b9307f5101c3a3a5efaba1027</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-18 12:18:44</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

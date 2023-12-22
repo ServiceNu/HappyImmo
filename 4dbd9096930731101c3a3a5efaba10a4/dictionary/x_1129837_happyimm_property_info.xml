@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="86ff28de934731101c3a3a5efaba10cc" label="Property info" max_length="40" name="x_1129837_happyimm_property_info" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Description" mandatory="true" max_length="500" name="description" type="string"/>
+        <element attributes="pdf_cell_type=image" label="Image" max_length="40" name="image" type="user_image"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Postal code" mandatory="true" max_length="40" name="postal_code" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="1000 Brussels City" value="1000"/>
+                <element inactive_on_update="false" label="1301 Bierges (Waver)" value="1301"/>
+                <element inactive_on_update="false" label="1790 Affligem" value="1790"/>
+                <element inactive_on_update="false" label="2000 Antwerp city" value="2000"/>
+                <element inactive_on_update="false" label="3293 Diest" value="3293"/>
+                <element inactive_on_update="false" label="3800 Sint -Truiden" value="3800"/>
+                <element inactive_on_update="false" label="4050 Chaudfontaine (municipality of Liège)" value="4050"/>
+                <element inactive_on_update="false" label="5012 Namur" value="5012"/>
+                <element inactive_on_update="false" label="5502 Dinant" value="5502"/>
+                <element inactive_on_update="false" label="5572 Beauraing" value="5572"/>
+                <element inactive_on_update="false" label="6460 Chimay" value="6460"/>
+                <element inactive_on_update="false" label="6940 Durbuy" value="6940"/>
+                <element inactive_on_update="false" label="8300 Knokke-Heist" value="8300"/>
+                <element inactive_on_update="false" label="9050 Gentbrugge" value="9050"/>
+            </choice>
+        </element>
+        <element attributes="omit_sys_original=true" choice="1" label="Price" mandatory="true" max_length="20" name="price" type="currency">
+            <choice>
+                <element dependent_value="€" inactive_on_update="false" label="€" sequence="0" value="€"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Transaction type" mandatory="true" max_length="40" name="transaction_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="For Rent" value="rent"/>
+                <element inactive_on_update="false" label="For Sale" value="sale"/>
+            </choice>
+        </element>
+    </element>
+</database>

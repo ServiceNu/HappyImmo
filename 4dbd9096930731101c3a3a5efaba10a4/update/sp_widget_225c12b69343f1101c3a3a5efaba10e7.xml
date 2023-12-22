@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($window) {
+    var c = this;
+
+    c.handleItemClick = function (item) {
+        // Assuming item.sys_id is the unique identifier of your record
+        var recordSysId = item.sys_id;
+
+        // Construct the URL to navigate to the record view
+        var recordUrl = '/nav_to.do?uri=' + encodeURIComponent('x_1129837_happyimm_property_info.do?sys_id=' + recordSysId);
+
+        // Use $window service to redirect
+        $window.location.href = recordUrl;
+    };
+
+    // Other code...
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>x_1129837_happyimm_property_info</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>happy_search_widget</id>
+        <internal>false</internal>
+        <link/>
+        <name>Happy Search Widget</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>admin,user</roles>
+        <script><![CDATA[// Server script for ServiceNow widget
+
+(function() {
+    // Retrieve items based on the search keywords
+    if (input && input.keywords) {
+        data.items = getCatalogItems(input.keywords);
+    } else {
+        data.items = []; // You might want to set default items here
+    }
+
+    // Function to get catalog items based on keywords
+    function getCatalogItems(keywords) {
+        var catalogItems = [];
+
+        // Create a new GlideRecord object for the 'x_1129837_happyimm_property_info' table
+        var gr = new GlideRecord('x_1129837_happyimm_property_info');
+
+        // Add an active query
+        gr.addActiveQuery();
+
+        // Customize your query based on your requirements
+        // For example, searching in the 'number' field
+        gr.addQuery('number', 'CONTAINS', keywords);
+
+        // Execute the query
+        gr.query();
+
+        // Loop through the results
+        while (gr.next()) {
+            var item = {
+                number: gr.getValue('number'),
+				description: gr.getValue('description'),
+				price: gr.getValue('price'),
+				postal_code: gr.getValue('postal_code'),
+				sys_id: gr.getValue('sys_id')
+                // Add other fields as needed
+            };
+            catalogItems.push(item);
+        }
+
+        return catalogItems;
+    }
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-15 11:51:17</sys_created_on>
+        <sys_id>225c12b69343f1101c3a3a5efaba10e7</sys_id>
+        <sys_mod_count>110</sys_mod_count>
+        <sys_name>Happy Search Widget</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_update_name>sp_widget_225c12b69343f1101c3a3a5efaba10e7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-20 22:31:31</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-primary">
+  <div class="panel-heading">Find Your Property</div>
+  <div class="panel-body">
+
+    <input class="form-control" type="search" 
+           placeholder="Start typing here to search the list of catalog items" 
+           ng-model="c.data.keywords" 
+           ng-change="c.server.update()" 
+           ng-model-options="{debounce: 250}" />
+
+    <div class="list-group result-container" ng-if="c.data.items.length > 0">
+
+      <!-- c.data.items is populated by the server script -->
+       <a href="javascript:void(0)" class="list-group-item row" ng-repeat="item in c.data.items" ng-click="c.handleItemClick(item)">
+        <div class="col-md-9">
+          <h4>{{item.number}}</h4>
+          <div style="line-height:90%">
+            <medium class="text-muted" style="line-height:0px">
+              Description = {{item.description}}<br>
+              Postal code = {{item.postal_code}}<br>
+              Price = {{item.price}}€<br>
+            </medium> 
+          </div> 
+        </div>
+      </a>
+
+    </div>  <!-- End of list-group container -->
+    </div>
+  </div>
+]]></template>
+    </sp_widget>
+</record_update>

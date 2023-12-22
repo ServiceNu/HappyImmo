@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[(function () {
+    var c = this;
+
+    // Function to handle click events on items
+    c.onClick = function ($event, item, url, action) {
+        $event.stopPropagation();
+        $event.preventDefault();
+
+        if (typeof url === "string") {
+            var urlExp = c.data.$interpolate(url);
+            url = urlExp(item);
+            c.$location.url(url);
+        } else if (url && typeof url === "object") {
+            c.$location.search(url);
+        } else {
+            var evt = {};
+            evt.url = url;
+            evt.table = item.className;
+            evt.sys_id = item.sys_id;
+						evt.record = item;
+            evt.rectangle_id = c.options.sys_id;
+            evt.action = action;
+
+            // Put out the selection with simple list "sl_" prefix
+            c.$location.search('sl_sys_id', evt.sys_id);
+            c.$location.search('sl_table', evt.table);
+            c.$location.search('spa', 1); // spa means "I've got this"
+
+            c.$rootScope.$broadcast('$sp.list.click', evt);
+        }
+    };
+
+    // Function to get the maximum shown label based on the number of entries displayed and the total count
+    c.getMaxShownLabel = function (maxEntries, totalCount) {
+        if (totalCount === c.data.maxCount) {
+            return "${First [0] of more than [1]}".replace('[0]', maxEntries).replace('[1]', totalCount);
+        }
+
+        return "${First [0] of [1]}".replace('[0]', maxEntries).replace('[1]', totalCount);
+    };
+
+    // Function to toggle the visibility of the filter
+    c.toggleFilter = function () {
+        c.data.showFilter = !c.data.showFilter;
+    };
+
+    // Other functions and logic can be added based on your specific requirements
+
+})();
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.panel {
+position: relative;
+}
+
+.panel-heading i {
+  cursor: pointer;
+  position: absolute;
+  padding: 10px;
+  top: 0px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.disabled-filter {
+	color: #A0A0A0;
+}
+
+.list-group-item.ng-enter {
+  transition: all 1s;
+  -webkit-transition: all 1s;
+
+  background-color: #c0dcfa;
+}
+
+.list-group-item.ng-enter-active {
+  background-color: #fff;
+}
+
+.hide-x-overflow {
+  overflow-x: hidden;
+}
+
+.translated-html &gt; p {
+  margin: 0px;
+  padding: 0px;
+}
+
+IMG {
+  max-width: 320px;
+  max-height: 240px;
+}
+
+IMG.img-sm {
+  max-height: 40px;
+  max-width: 40px;
+}
+
+.filter-box {
+  margin-top: 10px;
+}
+
+.panel-footer {
+  .number-shown-label {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    display: inline-block;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+.panel-title .fa {
+    padding-right: 4px;
+}
+
+.list-group-item &gt; a {
+	display: inline-block;
+}</css>
+        <data_table>sp_instance_vlist</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>table,filter,maximum_entries,display_field,color,size,glyph,sp_page</field_list>
+        <has_preview>false</has_preview>
+        <id>happyimmo_custom_list</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>HappyImmo Custom List</name>
+        <option_schema>[{"name":"always_show","section":"Behavior","label":"Show even when empty","type":"boolean"},{"name":"panel_body_height","section":"Presentation","label":"List body height","type":"string"},{"name":"image_field","section":"Presentation","label":"Image field","type":"field_name"},{"name":"secondary_fields","section":"Data","label":"Secondary fields","type":"field_list"},{"name":"rounded_images","section":"Presentation","label":"Rounded images","type":"boolean"},{"displayValue":"Page","name":"list_page","section":"Data","label":"List page","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}},{"name":"hide_footer","section":"Presentation","label":"Hide Footer","type":"boolean"},{"displayValue":"UI View","hint":"View to use when target page is a form","name":"view","section":"Behavior","label":"View","type":"reference","value":"sys_ui_view","ed":{"reference":"sys_ui_view"}},{"hint":"If checked, Simple List will not automatically updated based on changes to the filtered records","name":"disable_record_watcher","section":"Behavior","label":"Disable record watcher","type":"boolean"},{"name":"filter_acls","section":"Data","default_value":"false","label":"Enforce field-level Read ACLs on Filter query terms (may alter the query for unprivileged users)","type":"boolean"}]</option_schema>
+        <public>true</public>
+        <roles>admin,user</roles>
+        <script><![CDATA[(function () {
+    // Localization messages
+    data.filterMsg = gs.getMessage("Filter...");
+    data.viewAllMsg = gs.getMessage("View all");
+
+    // Option to hide the footer
+    if (gs.nil(options.hide_footer))
+        options.hide_footer = false;
+    options.hide_footer = (options.hide_footer == "true" || options.hide_footer == true);
+
+    // Get the table name from the URL parameter or options
+    options.table = $sp.getParameter('t') || options.table;
+
+    // Check if the table is specified
+    if (!options.table) {
+        // Log a warning and exit if the table is not specified
+        gs.warn("Table not specified for the Happyimmo custom list widget.");
+        data.isValid = false;
+        return;
+    }
+
+    // Check ACLs and user access to the specified table
+    if (!gs.getSession().isLoggedIn() && !new SNCACLUtil().hasPublicAccess(options.table)) {
+        gs.warn("Deny access to table which is not public: " + options.table);
+        data.isValid = false;
+        return;
+    }
+
+    // Create a GlideRecord for the specified table
+    var gr = new GlideRecordSecure(options.table);
+
+    // Check if the GlideRecord is valid for the specified table
+    if (!gr.isValid()) {
+        gs.warn("Invalid table specified: " + options.table);
+        data.isValid = false;
+        return;
+    } else {
+        data.isValid = true;
+    }
+
+    // Temporary GlideRecord for field validation
+    var grTemp = new GlideRecord('Property Info');
+
+    // Apply ACL-based filter or encoded query filter
+    if (options.filter_acls == "true")
+        gr = $sp.addQueryString(gr, options.filter);
+    else
+        gr.addEncodedQuery(options.filter);
+
+    // Set widget title based on the table's plural name
+    options.title = options.title || gr.getPlural();
+
+    // Set the display field for the records
+    options.display_field = $sp.getParameter('f') || options.display_field;
+    if (!options.display_field || !grTemp.isValidField(options.display_field))
+        options.display_field = gr.getDisplayName();
+
+    // Apply additional filtering based on user input
+    if (input && input.filterText)
+        gr.addEncodedQuery(options.display_field + "LIKE" + input.filterText);
+
+    // Set title again in case it wasn't specified
+    options.title = options.title || gr.getPlural();
+
+    // Split and process secondary fields
+    options.secondary_fields = options.secondary_fields || "";
+    options.secondary_fields = options.secondary_fields.split(",");
+
+    // Set the order field or use display_field if not specified
+    if (!options.order_by || !grTemp.isValidField(options.order_by))
+        options.order_by = options.display_field;
+
+    // Set up the sp_page and list_page_dv based on options
+    if (options.list_page) {
+        var homePage = new GlideRecord('Happy Immoweb');
+        if (homePage.get(options.happyimmo_custom_list))
+            options.list_page_dv = homePage.getDisplayValue('id');
+    }
+
+    // Order records based on direction (ascending or descending)
+    if (options.order_direction == "asc")
+        gr.orderBy(options.order_by);
+    else
+        gr.orderByDesc(options.order_by);
+
+    // Set a maximum limit for the number of records to fetch
+    data.maxCount = 500;
+    gr.setLimit(data.maxCount);
+    
+    // Execute the query
+    gr.query();
+
+    // Get the total number of records
+    data.count = gr.getRowCount();
+
+    // Get actions for the records
+    data.actions = getActions();
+
+    // Prepare the list of records for display
+    data.list = [];
+    var recordIdx = 0;
+    while (gr.next()) {
+        // Break if maximum_entries is reached
+        if (options.maximum_entries && recordIdx == options.maximum_entries)
+            break;
+
+        // Create a record object
+        var record = {};
+
+        // Populate the record with field values
+        if (data.actions.length > 0) {
+            var fields = gr.getFields();
+            for (var i = 0; i < fields.size(); i++) {
+                var glideElement = fields.get(i);
+                var name = glideElement.getName();
+                if (name.indexOf("sys_") == -1)
+                    record[name] = gr.getValue(name);
+            }
+        }
+
+        // Set sys_id and record class name
+        record.sys_id = gr.getValue('sys_id');
+        record.className = gr.getRecordClassName();
+
+        // Set image field or use a default if not specified
+        if (options.image_field) {
+            record.image_field = gr.getDisplayValue(options.image_field);
+            if (!record.image_field)
+                record.image_field = "noimage.pngx";
+        }
+
+        // Set display field
+        if (options.display_field)
+            record.display_field = getField(gr, options.display_field);
+
+        // Set secondary fields
+        record.secondary_fields = [];
+        options.secondary_fields.forEach(function looping(f) {
+            record.secondary_fields.push(getField(gr, f));
+        });
+
+        // Set the record URL
+        if (options.sp_page) {
+            var view = "sp";
+            if (options.view) {
+                var viewGR = new GlideRecord("sys_ui_view");
+                viewGR.get(options.view);
+                view = viewGR.getValue("name");
+            }
+            record.url = {id: options.sp_page, table: record.className, sys_id: record.sys_id, view: view};
+        } else if (options.url != '')
+            record.url = options.url;
+        else
+            record.url = null;
+
+        // Add the record to the list
+        data.list.push(record);
+        recordIdx++;
+    }
+
+    // Function to get field details for a GlideRecord
+    function getField(gr, name) {
+        var f = {};
+        f.display_value = gr.getDisplayValue(name);
+        f.value = gr.getValue(name);
+        var ge = gr.getElement(name);
+        if (ge == null)
+            return f;
+
+        f.type = ge.getED().getInternalType();
+        if (f.type == "glide_date_time")
+            f.isFuture = gs.dateDiff(gr.getValue(name), gs.nowNoTZ(), true) < 0;
+        else if (f.type == "glide_date")
+            f.isFuture = gs.dateDiff(gr.getValue(name), gs.now(), true) < 0;
+        f.label = ge.getLabel();
+        return f;
+    }
+
+    // Function to get actions for the records
+    function getActions() {
+        return JSON.parse($sp.getSPVlistActions($sp.getValue("sys_id")));
+    }
+
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-15 08:03:32</sys_created_on>
+        <sys_id>1a38a536934fb1101c3a3a5efaba10fe</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>HappyImmo Custom List</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_update_name>sp_widget_1a38a536934fb1101c3a3a5efaba10fe</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-15 08:36:26</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-{{::c.options.color}} b" ng-if="c.data.isValid && (c.options.always_show == 'true' || c.options.always_show == true || c.data.filterText || c.data.list.length)">
+  <div class="panel-heading" ng-if="::!c.options.hide_header">
+    <h3 class="h4 panel-title">
+      <span ng-if="c.options.glyph">
+        <fa name="{{::c.options.glyph}}"></fa>
+      </span>{{::c.options.title}}</h3>
+    <!-- <i class="fa fa-filter" ng-click="c.toggleFilter()" ng-class="{'disabled-filter': !c.showFilter}"></i> -->
+    <div ng-show="c.showFilter">
+      <input aria-label="${Filter}" ng-model="c.data.filterText" ng-model-options="{debounce: 300}" sn-focus="c.showFilter" placeholder="{{::data.filterMsg}}" ng-change="c.update()" class="form-control input-sm filter-box">
+    </div>
+  </div>
+  <ul class="list-group hide-x-overflow" ng-style="::{maxHeight: c.getMaxHeight()}" style="overflow-y: auto;" ng-if="c.data.list.length > 0">
+    <li ng-repeat="item in c.data.list track by item.sys_id" class="list-group-item">
+      <a ng-if="action.glyph || c.options.image_field || (item.display_field.type == 'translated_html' ? item.display_field.value : item.display_field.display_value)" ng-click="c.onClick($event, item, item.url, {})" href="javascript:void(0)" oncontextmenu="return false;">
+        <span ng-repeat="action in c.data.actions" href="" ng-click="c.onClick($event, item, action.url, action)" ng-if="action.glyph"
+              class="list-action l-h-40 pull-right">
+          <fa name="{{action.glyph}}" ng-class="c.getActionColor(action)"></fa>
+        </span>
+        <span ng-if="c.options.image_field" class="pull-left m-r"
+              ng-class="{'avatar': c.options.rounded_images, 'thumb-sm': c.options.rounded_images}">
+          <img ng-src="{{item.image_field}}" alt="..." class="img-sm" ng-class="{'img-circle': c.options.rounded_images}">
+        </span>
+          <div ng-switch on="item.display_field.type" ng-class="{'l-h-40': !item.secondary_fields.length}">
+            <span class="translated-html" ng-switch-when="translated_html" ng-bind-html="item.display_field.value"></span>
+            <div ng-switch-default>{{item.display_field.display_value}}</div>
+          </div>
+	  </a>
+	    <div>
+          <small class="text-muted" ng-repeat="f in item.secondary_fields">
+            <span ng-if="!$first"> • </span>
+            <span ng-switch="f.type" title="{{::f.label}}">
+              <span ng-switch-when="glide_date">
+                <span ng-if="!f.isFuture"> <sn-day-ago date="::f.value"></sn-day-ago> </span>
+                <span ng-if="f.isFuture"> {{f.display_value}}</span>
+              </span>
+              <span ng-switch-when="glide_date_time">
+                <span ng-if="!f.isFuture"> <sn-time-ago timestamp="::f.value"></sn-time-ago></span>
+                <span ng-if="f.isFuture"> {{f.display_value}}</span>
+              </span>
+              <span ng-switch-default="">{{f.display_value}}</span>
+            </span>
+          </small>
+        </div>
+    </li>
+  </ul>
+  <div ng-if="!c.data.list.length" class="list-group-item">
+     ${No records found}
+  </div>
+  <div class="panel-footer" ng-if="!c.options.hide_footer && c.options.maximum_entries && c.data.count > c.options.maximum_entries">
+    <div class="h4 number-shown-label">{{c.getMaxShownLabel(c.options.maximum_entries, c.data.count)}}</div>
+    <a class="pull-right" ng-href="?id={{c.seeAllPage}}&table={{c.options.table}}&filter={{c.options.filter}}{{c.targetPageID}}" aria-label="{{::data.viewAllMsg}} - {{::c.options.title}}">${View all}</a>
+  </div>
+</div>]]></template>
+    </sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</application>
+        <file_path/>
+        <instance_id>45b65c1f1b4eb5d019254089bd4bcb77</instance_id>
+        <instance_name>dev196055</instance_name>
+        <name>sp_widget_1a38a536934fb1101c3a3a5efaba10fe</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[(function () {
+    var c = this;
+
+    // Function to handle click events on items
+    c.onClick = function ($event, item, url, action) {
+        $event.stopPropagation();
+        $event.preventDefault();
+
+        if (typeof url === "string") {
+            var urlExp = c.data.$interpolate(url);
+            url = urlExp(item);
+            c.$location.url(url);
+        } else if (url &amp;&amp; typeof url === "object") {
+            c.$location.search(url);
+        } else {
+            var evt = {};
+            evt.url = url;
+            evt.table = item.className;
+            evt.sys_id = item.sys_id;
+						evt.record = item;
+            evt.rectangle_id = c.options.sys_id;
+            evt.action = action;
+
+            // Put out the selection with simple list "sl_" prefix
+            c.$location.search('sl_sys_id', evt.sys_id);
+            c.$location.search('sl_table', evt.table);
+            c.$location.search('spa', 1); // spa means "I've got this"
+
+            c.$rootScope.$broadcast('$sp.list.click', evt);
+        }
+    };
+
+    // Function to get the maximum shown label based on the number of entries displayed and the total count
+    c.getMaxShownLabel = function (maxEntries, totalCount) {
+        if (totalCount === c.data.maxCount) {
+            return "${First [0] of more than [1]}".replace('[0]', maxEntries).replace('[1]', totalCount);
+        }
+
+        return "${First [0] of [1]}".replace('[0]', maxEntries).replace('[1]', totalCount);
+    };
+
+    // Function to toggle the visibility of the filter
+    c.toggleFilter = function () {
+        c.data.showFilter = !c.data.showFilter;
+    };
+
+    // Other functions and logic can be added based on your specific requirements
+
+})();
+]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;.panel {
+position: relative;
+}
+
+.panel-heading i {
+  cursor: pointer;
+  position: absolute;
+  padding: 10px;
+  top: 0px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.disabled-filter {
+	color: #A0A0A0;
+}
+
+.list-group-item.ng-enter {
+  transition: all 1s;
+  -webkit-transition: all 1s;
+
+  background-color: #c0dcfa;
+}
+
+.list-group-item.ng-enter-active {
+  background-color: #fff;
+}
+
+.hide-x-overflow {
+  overflow-x: hidden;
+}
+
+.translated-html &amp;gt; p {
+  margin: 0px;
+  padding: 0px;
+}
+
+IMG {
+  max-width: 320px;
+  max-height: 240px;
+}
+
+IMG.img-sm {
+  max-height: 40px;
+  max-width: 40px;
+}
+
+.filter-box {
+  margin-top: 10px;
+}
+
+.panel-footer {
+  .number-shown-label {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    display: inline-block;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+.panel-title .fa {
+    padding-right: 4px;
+}
+
+.list-group-item &amp;gt; a {
+	display: inline-block;
+}&lt;/css&gt;&lt;data_table&gt;sp_instance_vlist&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list&gt;table,filter,maximum_entries,display_field,color,size,glyph,sp_page&lt;/field_list&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;happyimmo_custom_list&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;HappyImmo Custom List&lt;/name&gt;&lt;option_schema&gt;[{"name":"always_show","section":"Behavior","label":"Show even when empty","type":"boolean"},{"name":"panel_body_height","section":"Presentation","label":"List body height","type":"string"},{"name":"image_field","section":"Presentation","label":"Image field","type":"field_name"},{"name":"secondary_fields","section":"Data","label":"Secondary fields","type":"field_list"},{"name":"rounded_images","section":"Presentation","label":"Rounded images","type":"boolean"},{"displayValue":"Page","name":"list_page","section":"Data","label":"List page","type":"reference","value":"sp_page","ed":{"reference":"sp_page"}},{"name":"hide_footer","section":"Presentation","label":"Hide Footer","type":"boolean"},{"displayValue":"UI View","hint":"View to use when target page is a form","name":"view","section":"Behavior","label":"View","type":"reference","value":"sys_ui_view","ed":{"reference":"sys_ui_view"}},{"hint":"If checked, Simple List will not automatically updated based on changes to the filtered records","name":"disable_record_watcher","section":"Behavior","label":"Disable record watcher","type":"boolean"},{"name":"filter_acls","section":"Data","default_value":"false","label":"Enforce field-level Read ACLs on Filter query terms (may alter the query for unprivileged users)","type":"boolean"}]&lt;/option_schema&gt;&lt;public&gt;true&lt;/public&gt;&lt;roles&gt;admin,user&lt;/roles&gt;&lt;script&gt;&lt;![CDATA[(function () {
+    // Localization messages
+    data.filterMsg = gs.getMessage("Filter...");
+    data.viewAllMsg = gs.getMessage("View all");
+
+    // Option to hide the footer
+    if (gs.nil(options.hide_footer))
+        options.hide_footer = false;
+    options.hide_footer = (options.hide_footer == "true" || options.hide_footer == true);
+
+    // Get the table name from the URL parameter or options
+    options.table = $sp.getParameter('t') || options.table;
+
+    // Check if the table is specified
+    if (!options.table) {
+        // Log a warning and exit if the table is not specified
+        gs.warn("Table not specified for the Happyimmo custom list widget.");
+        data.isValid = false;
+        return;
+    }
+
+    // Check ACLs and user access to the specified table
+    if (!gs.getSession().isLoggedIn() &amp;&amp; !new SNCACLUtil().hasPublicAccess(options.table)) {
+        gs.warn("Deny access to table which is not public: " + options.table);
+        data.isValid = false;
+        return;
+    }
+
+    // Create a GlideRecord for the specified table
+    var gr = new GlideRecordSecure(options.table);
+
+    // Check if the GlideRecord is valid for the specified table
+    if (!gr.isValid()) {
+        gs.warn("Invalid table specified: " + options.table);
+        data.isValid = false;
+        return;
+    } else {
+        data.isValid = true;
+    }
+
+    // Temporary GlideRecord for field validation
+    var grTemp = new GlideRecord('Property Info');
+
+    // Apply ACL-based filter or encoded query filter
+    if (options.filter_acls == "true")
+        gr = $sp.addQueryString(gr, options.filter);
+    else
+        gr.addEncodedQuery(options.filter);
+
+    // Set widget title based on the table's plural name
+    options.title = options.title || gr.getPlural();
+
+    // Set the display field for the records
+    options.display_field = $sp.getParameter('f') || options.display_field;
+    if (!options.display_field || !grTemp.isValidField(options.display_field))
+        options.display_field = gr.getDisplayName();
+
+    // Apply additional filtering based on user input
+    if (input &amp;&amp; input.filterText)
+        gr.addEncodedQuery(options.display_field + "LIKE" + input.filterText);
+
+    // Set title again in case it wasn't specified
+    options.title = options.title || gr.getPlural();
+
+    // Split and process secondary fields
+    options.secondary_fields = options.secondary_fields || "";
+    options.secondary_fields = options.secondary_fields.split(",");
+
+    // Set the order field or use display_field if not specified
+    if (!options.order_by || !grTemp.isValidField(options.order_by))
+        options.order_by = options.display_field;
+
+    // Set up the sp_page and list_page_dv based on options
+    if (options.list_page) {
+        var homePage = new GlideRecord('Happy Immoweb');
+        if (homePage.get(options.happyimmo_custom_list))
+            options.list_page_dv = homePage.getDisplayValue('id');
+    }
+
+    // Order records based on direction (ascending or descending)
+    if (options.order_direction == "asc")
+        gr.orderBy(options.order_by);
+    else
+        gr.orderByDesc(options.order_by);
+
+    // Set a maximum limit for the number of records to fetch
+    data.maxCount = 500;
+    gr.setLimit(data.maxCount);
+    
+    // Execute the query
+    gr.query();
+
+    // Get the total number of records
+    data.count = gr.getRowCount();
+
+    // Get actions for the records
+    data.actions = getActions();
+
+    // Prepare the list of records for display
+    data.list = [];
+    var recordIdx = 0;
+    while (gr.next()) {
+        // Break if maximum_entries is reached
+        if (options.maximum_entries &amp;&amp; recordIdx == options.maximum_entries)
+            break;
+
+        // Create a record object
+        var record = {};
+
+        // Populate the record with field values
+        if (data.actions.length &gt; 0) {
+            var fields = gr.getFields();
+            for (var i = 0; i &lt; fields.size(); i++) {
+                var glideElement = fields.get(i);
+                var name = glideElement.getName();
+                if (name.indexOf("sys_") == -1)
+                    record[name] = gr.getValue(name);
+            }
+        }
+
+        // Set sys_id and record class name
+        record.sys_id = gr.getValue('sys_id');
+        record.className = gr.getRecordClassName();
+
+        // Set image field or use a default if not specified
+        if (options.image_field) {
+            record.image_field = gr.getDisplayValue(options.image_field);
+            if (!record.image_field)
+                record.image_field = "noimage.pngx";
+        }
+
+        // Set display field
+        if (options.display_field)
+            record.display_field = getField(gr, options.display_field);
+
+        // Set secondary fields
+        record.secondary_fields = [];
+        options.secondary_fields.forEach(function looping(f) {
+            record.secondary_fields.push(getField(gr, f));
+        });
+
+        // Set the record URL
+        if (options.sp_page) {
+            var view = "sp";
+            if (options.view) {
+                var viewGR = new GlideRecord("sys_ui_view");
+                viewGR.get(options.view);
+                view = viewGR.getValue("name");
+            }
+            record.url = {id: options.sp_page, table: record.className, sys_id: record.sys_id, view: view};
+        } else if (options.url != '')
+            record.url = options.url;
+        else
+            record.url = null;
+
+        // Add the record to the list
+        data.list.push(record);
+        recordIdx++;
+    }
+
+    // Function to get field details for a GlideRecord
+    function getField(gr, name) {
+        var f = {};
+        f.display_value = gr.getDisplayValue(name);
+        f.value = gr.getValue(name);
+        var ge = gr.getElement(name);
+        if (ge == null)
+            return f;
+
+        f.type = ge.getED().getInternalType();
+        if (f.type == "glide_date_time")
+            f.isFuture = gs.dateDiff(gr.getValue(name), gs.nowNoTZ(), true) &lt; 0;
+        else if (f.type == "glide_date")
+            f.isFuture = gs.dateDiff(gr.getValue(name), gs.now(), true) &lt; 0;
+        f.label = ge.getLabel();
+        return f;
+    }
+
+    // Function to get actions for the records
+    function getActions() {
+        return JSON.parse($sp.getSPVlistActions($sp.getValue("sys_id")));
+    }
+
+})();
+]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2023-12-15 08:03:32&lt;/sys_created_on&gt;&lt;sys_id&gt;1a38a536934fb1101c3a3a5efaba10fe&lt;/sys_id&gt;&lt;sys_mod_count&gt;7&lt;/sys_mod_count&gt;&lt;sys_name&gt;HappyImmo Custom List&lt;/sys_name&gt;&lt;sys_package display_value="HappyImmo" source="x_1129837_happyimm"&gt;4dbd9096930731101c3a3a5efaba10a4&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="HappyImmo"&gt;4dbd9096930731101c3a3a5efaba10a4&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_1a38a536934fb1101c3a3a5efaba10fe&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2023-12-15 08:36:26&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="panel panel-{{::c.options.color}} b" ng-if="c.data.isValid &amp;&amp; (c.options.always_show == 'true' || c.options.always_show == true || c.data.filterText || c.data.list.length)"&gt;
+  &lt;div class="panel-heading" ng-if="::!c.options.hide_header"&gt;
+    &lt;h3 class="h4 panel-title"&gt;
+      &lt;span ng-if="c.options.glyph"&gt;
+        &lt;fa name="{{::c.options.glyph}}"&gt;&lt;/fa&gt;
+      &lt;/span&gt;{{::c.options.title}}&lt;/h3&gt;
+    &lt;!-- &lt;i class="fa fa-filter" ng-click="c.toggleFilter()" ng-class="{'disabled-filter': !c.showFilter}"&gt;&lt;/i&gt; --&gt;
+    &lt;div ng-show="c.showFilter"&gt;
+      &lt;input aria-label="${Filter}" ng-model="c.data.filterText" ng-model-options="{debounce: 300}" sn-focus="c.showFilter" placeholder="{{::data.filterMsg}}" ng-change="c.update()" class="form-control input-sm filter-box"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;ul class="list-group hide-x-overflow" ng-style="::{maxHeight: c.getMaxHeight()}" style="overflow-y: auto;" ng-if="c.data.list.length &gt; 0"&gt;
+    &lt;li ng-repeat="item in c.data.list track by item.sys_id" class="list-group-item"&gt;
+      &lt;a ng-if="action.glyph || c.options.image_field || (item.display_field.type == 'translated_html' ? item.display_field.value : item.display_field.display_value)" ng-click="c.onClick($event, item, item.url, {})" href="javascript:void(0)" oncontextmenu="return false;"&gt;
+        &lt;span ng-repeat="action in c.data.actions" href="" ng-click="c.onClick($event, item, action.url, action)" ng-if="action.glyph"
+              class="list-action l-h-40 pull-right"&gt;
+          &lt;fa name="{{action.glyph}}" ng-class="c.getActionColor(action)"&gt;&lt;/fa&gt;
+        &lt;/span&gt;
+        &lt;span ng-if="c.options.image_field" class="pull-left m-r"
+              ng-class="{'avatar': c.options.rounded_images, 'thumb-sm': c.options.rounded_images}"&gt;
+          &lt;img ng-src="{{item.image_field}}" alt="..." class="img-sm" ng-class="{'img-circle': c.options.rounded_images}"&gt;
+        &lt;/span&gt;
+          &lt;div ng-switch on="item.display_field.type" ng-class="{'l-h-40': !item.secondary_fields.length}"&gt;
+            &lt;span class="translated-html" ng-switch-when="translated_html" ng-bind-html="item.display_field.value"&gt;&lt;/span&gt;
+            &lt;div ng-switch-default&gt;{{item.display_field.display_value}}&lt;/div&gt;
+          &lt;/div&gt;
+	  &lt;/a&gt;
+	    &lt;div&gt;
+          &lt;small class="text-muted" ng-repeat="f in item.secondary_fields"&gt;
+            &lt;span ng-if="!$first"&gt; • &lt;/span&gt;
+            &lt;span ng-switch="f.type" title="{{::f.label}}"&gt;
+              &lt;span ng-switch-when="glide_date"&gt;
+                &lt;span ng-if="!f.isFuture"&gt; &lt;sn-day-ago date="::f.value"&gt;&lt;/sn-day-ago&gt; &lt;/span&gt;
+                &lt;span ng-if="f.isFuture"&gt; {{f.display_value}}&lt;/span&gt;
+              &lt;/span&gt;
+              &lt;span ng-switch-when="glide_date_time"&gt;
+                &lt;span ng-if="!f.isFuture"&gt; &lt;sn-time-ago timestamp="::f.value"&gt;&lt;/sn-time-ago&gt;&lt;/span&gt;
+                &lt;span ng-if="f.isFuture"&gt; {{f.display_value}}&lt;/span&gt;
+              &lt;/span&gt;
+              &lt;span ng-switch-default=""&gt;{{f.display_value}}&lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/small&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;div ng-if="!c.data.list.length" class="list-group-item"&gt;
+     ${No records found}
+  &lt;/div&gt;
+  &lt;div class="panel-footer" ng-if="!c.options.hide_footer &amp;&amp; c.options.maximum_entries &amp;&amp; c.data.count &gt; c.options.maximum_entries"&gt;
+    &lt;div class="h4 number-shown-label"&gt;{{c.getMaxShownLabel(c.options.maximum_entries, c.data.count)}}&lt;/div&gt;
+    &lt;a class="pull-right" ng-href="?id={{c.seeAllPage}}&amp;table={{c.options.table}}&amp;filter={{c.options.filter}}{{c.targetPageID}}" aria-label="{{::data.viewAllMsg}} - {{::c.options.title}}"&gt;${View all}&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1226628957</payload_hash>
+        <record_name>HappyImmo Custom List</record_name>
+        <reverted_from/>
+        <source>41bd9096930731101c3a3a5efaba10a9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-15 08:36:26</sys_created_on>
+        <sys_id>5ccf2932938fb1101c3a3a5efaba1024</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18c6c9ea9bd0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-15 08:36:26</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>10cfa57e814fb1102b5bdeee7d63493f</update_guid>
+        <update_guid_history>10cfa57e814fb1102b5bdeee7d63493f:1226628957,259e213e8b4fb110d0b4b04d6bac56b5:-1161466327,4b2d613ea84fb11037c54ffb34060ed6:1512562423,62cb69fa214fb1108facaddd912364ad:-944920080,c81b2dbaff4fb1105fed372576abd894:1890550597,0f58edf6cc4fb11042afa1e30b1a3e2f:-778546386,1238e536654fb11088f7d60e21077000:-1811861028</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="HappyImmo Custom List">9150f172938fb1101c3a3a5efaba107e</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-15 08:38:58</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>142bfeba7f1348c8a386fc24866e9631</sys_id>
+        <sys_metadata>1a38a536934fb1101c3a3a5efaba10fe</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>HappyImmo Custom List</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_scope_delete display_value="">1c3543a6040145908eb8e2564bcf0900</sys_scope_delete>
+        <sys_update_name>sp_widget_1a38a536934fb1101c3a3a5efaba10fe</sys_update_name>
+        <sys_update_version display_value="sp_widget_1a38a536934fb1101c3a3a5efaba10fe">5ccf2932938fb1101c3a3a5efaba1024</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-15 08:38:58</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="transaction_type" label="Transaction type" language="en" table="x_1129837_happyimm_property_info">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>transaction_type</element>
+            <help/>
+            <hint/>
+            <label>Transaction type</label>
+            <language>en</language>
+            <name>x_1129837_happyimm_property_info</name>
+            <plural>Transaction types</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2023-12-13 14:40:48</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Transaction type</sys_name>
+            <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+            <sys_update_name>sys_documentation_x_1129837_happyimm_property_info_transaction_type_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2023-12-13 14:40:48</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

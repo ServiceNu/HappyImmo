@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="DELETE">
+        <category>custom</category>
+        <css/>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <human_readable_url_structure/>
+        <id>happyimmo_custom_list</id>
+        <internal>false</internal>
+        <omit_watcher>false</omit_watcher>
+        <public>false</public>
+        <roles/>
+        <seo_script/>
+        <short_description/>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-15 08:03:33</sys_created_on>
+        <sys_id>9638e536934fb1101c3a3a5efaba1004</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>happyimmo_custom_list</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_update_name>sp_page_9638e536934fb1101c3a3a5efaba1004</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-15 08:03:33</sys_updated_on>
+        <title>HappyImmo Custom List - Test Page</title>
+        <use_seo_script>false</use_seo_script>
+    </sp_page>
+    <sys_translated_text action="DELETE" query="documentkey=9638e536934fb1101c3a3a5efaba1004"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</application>
+        <file_path/>
+        <instance_id>45b65c1f1b4eb5d019254089bd4bcb77</instance_id>
+        <instance_name>dev196055</instance_name>
+        <name>sp_page_9638e536934fb1101c3a3a5efaba1004</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page"><sp_page action="INSERT_OR_UPDATE"><category>custom</category><css/><draft>false</draft><dynamic_title_structure/><human_readable_url_structure/><id>happyimmo_custom_list</id><internal>false</internal><omit_watcher>false</omit_watcher><public>false</public><roles/><seo_script/><short_description/><sys_class_name>sp_page</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2023-12-15 08:03:33</sys_created_on><sys_id>9638e536934fb1101c3a3a5efaba1004</sys_id><sys_mod_count>0</sys_mod_count><sys_name>happyimmo_custom_list</sys_name><sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package><sys_policy/><sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope><sys_update_name>sp_page_9638e536934fb1101c3a3a5efaba1004</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2023-12-15 08:03:33</sys_updated_on><title>HappyImmo Custom List - Test Page</title><use_seo_script>false</use_seo_script></sp_page><sys_translated_text action="delete_multiple" query="documentkey=9638e536934fb1101c3a3a5efaba1004"/></record_update>]]></payload>
+        <payload_hash>610912266</payload_hash>
+        <record_name>happyimmo_custom_list</record_name>
+        <reverted_from/>
+        <source>41bd9096930731101c3a3a5efaba10a9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-15 08:03:33</sys_created_on>
+        <sys_id>ee382df6934fb1101c3a3a5efaba10c2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18c6c808d630000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-15 08:03:33</sys_updated_on>
+        <type>Page</type>
+        <update_guid>26382df6144fb1109037351c8a404bc2</update_guid>
+        <update_guid_history>26382df6144fb1109037351c8a404bc2:610912266</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="happyimmo_custom_list">8680f572938fb1101c3a3a5efaba108f</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-15 08:39:50</sys_created_on>
+        <sys_db_object display_value="" name="sp_page">sp_page</sys_db_object>
+        <sys_id>6e65eb55c10d4035b8a0c6e0ef8a10d1</sys_id>
+        <sys_metadata>9638e536934fb1101c3a3a5efaba1004</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>happyimmo_custom_list</sys_name>
+        <sys_package display_value="HappyImmo" source="x_1129837_happyimm">4dbd9096930731101c3a3a5efaba10a4</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="HappyImmo">4dbd9096930731101c3a3a5efaba10a4</sys_scope>
+        <sys_scope_delete display_value="">1c3543a6040145908eb8e2564bcf0900</sys_scope_delete>
+        <sys_update_name>sp_page_9638e536934fb1101c3a3a5efaba1004</sys_update_name>
+        <sys_update_version display_value="sp_page_9638e536934fb1101c3a3a5efaba1004">ee382df6934fb1101c3a3a5efaba10c2</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-15 08:39:50</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
